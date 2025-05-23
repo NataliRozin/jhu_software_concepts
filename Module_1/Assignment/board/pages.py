@@ -1,15 +1,15 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 bp = Blueprint("pages", __name__)
 
 @bp.route("/")
 def home():
-    return "Hello, Home!"
+    return render_template("pages/home.html")
 
 @bp.route("/contact")
 def contact():
-    return "email + linkedin"
+    return render_template("pages/contact.html")
 
 @bp.route("/projects")
 def projects():
-    return "my projects"
+    return render_template("pages/projects.html")
