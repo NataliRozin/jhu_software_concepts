@@ -1,16 +1,29 @@
+{# Get the current URL path to determine which navigation link is active #}
 {% set current = request.path %}
 
 <nav class="navbar">
+
+  {# Home page link — add 'active' class if on the home page #}
   <a href="{{ url_for('pages.home') }}" class="nav-item {% if current == url_for('pages.home') %}active{% endif %}">
     <span>Home</span>
+
+    {# Decorative indicator shown only when active #}
     <div class="indicator"></div>
   </a>
+
+  {# Contact page link — add 'active' class if on the home page #}
   <a href="{{ url_for('pages.contact') }}" class="nav-item {% if current == url_for('pages.contact') %}active{% endif %}">
     <span>Contact</span>
+
+    {# Decorative indicator shown only when active #}
     <div class="indicator"></div>
   </a>
+
+  {# Projects page link — add 'active' class if on the home page #}
   <a href="{{ url_for('pages.projects') }}" class="nav-item {% if current == url_for('pages.projects') %}active{% endif %}">
     <span>Projects</span>
+
+    {# Decorative indicator shown only when active #}
     <div class="indicator"></div>
   </a>
 </nav>
