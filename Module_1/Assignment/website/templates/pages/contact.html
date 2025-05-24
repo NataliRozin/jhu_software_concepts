@@ -3,10 +3,19 @@
 {% block title %}Natali Rozin: Contact{% endblock title %}
 
 {% block header %}
-  <h2>Contact</h2>
+  <h2>Get in touch</h2>
 {% endblock header %}
 
 {% block content %}
-  <p><span class="label">Email:</span><br>nrozin1@jh.edu</p>
-  <p><span class="label">Linkedin:</span><br><a href="https://www.linkedin.com/in/natali-rozin" target="_blank">linkedin.com/in/natali-rozin</a></p>
+  <div class="contact-grid">
+    <img src="{{ url_for('static', filename='icons/email.png') }}" class="icon"/>
+    <a href="mailto:nrozin1@jhu.com">
+      <span>nrozin1@jh.edu</span>
+    </a>
+
+    <img src="{{ url_for('static', filename='icons/linkedin_1.png') }}" class="icon"/>
+    <a href="https://www.linkedin.com/in/natali-rozin" target="_blank" rel="noopener">
+      <span>linkedin.com/in/natali-rozin</span>
+    </a>
+  </div>
 {% endblock content %}
