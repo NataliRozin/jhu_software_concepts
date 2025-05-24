@@ -124,3 +124,34 @@ nav.navbar {
   background-color: var(--primary-color);
   margin-top: 8px; /* space above indicator */
 }
+
+/* HOMEPAGE LAYOUT */
+.image-text-container {
+  display: flex;
+  flex-direction: row; /* ensure row layout */
+  align-items: center;
+  justify-content: flex-start; /* left align */
+  flex-wrap: nowrap; /* prevent wrapping */
+  text-align: left;
+  width: 100%;
+  margin: 0 auto;
+  gap: 150px;
+}
+
+.profile-pic {
+  flex: 0 0 20%;
+  max-width: 150px; /* control image size */
+  height: auto;
+  border-radius: 10px;
+}
+
+.text-content {
+   max-width: calc(100% - 250px); /* leave space for image + gap */
+}
+
+.profession {
+  font-weight: 550;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
