@@ -1,7 +1,16 @@
-<nav>
-  <ul>
-    <li><a href="{{ url_for('pages.home') }}">Home</a></li>
-    <li><a href="{{ url_for('pages.contact') }}">Contact</a></li>
-    <li><a href="{{ url_for('pages.projects') }}">Projects</a></li>
-  </ul>
+{% set current = request.path %}
+
+<nav class="navbar">
+  <a href="{{ url_for('pages.home') }}" class="nav-item {% if current == url_for('pages.home') %}active{% endif %}">
+    <span>Home</span>
+    <div class="indicator"></div>
+  </a>
+  <a href="{{ url_for('pages.contact') }}" class="nav-item {% if current == url_for('pages.contact') %}active{% endif %}">
+    <span>Contact</span>
+    <div class="indicator"></div>
+  </a>
+  <a href="{{ url_for('pages.projects') }}" class="nav-item {% if current == url_for('pages.projects') %}active{% endif %}">
+    <span>Projects</span>
+    <div class="indicator"></div>
+  </a>
 </nav>
