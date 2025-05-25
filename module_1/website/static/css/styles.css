@@ -56,7 +56,6 @@ main {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  text-align: center;
 }
 
 section {
@@ -174,4 +173,27 @@ nav.navbar {
   width: 24px;
   height: 24px;
   justify-self: start;
+}
+
+/* PROJECTS PAGE */
+.button {
+  display: block;
+  margin: 1em auto 0 auto;
+  margin-top: 1em;  /* adds space above the button */
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  width: 180px;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, #d8bfd8, #fbc1cc);
+  box-shadow: 0 4px 8px rgba(251, 193, 204, 0.5);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+  box-shadow: 0 6px 12px rgba(251, 193, 204, 0.7);
+  transform: translateY(-2px);
 }

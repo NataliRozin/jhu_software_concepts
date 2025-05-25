@@ -1,7 +1,7 @@
 from flask import Flask
 from website import pages
 
-# Build the Flask app
+# Flask constructor
 def create_app():
     # Create a new Flask application instance
     app = Flask(__name__)
