@@ -31,7 +31,7 @@ body {
 
 /* TYPOGRAPHY */
 h3 {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .label {
@@ -73,7 +73,7 @@ nav.navbar {
   padding: 20px 10px;
   display: flex;
   justify-content: flex-end; /* push items to the right */
-  position: absolute;
+  position: fixed;
   width: 100%;
   z-index: 1000;
 }
@@ -88,6 +88,7 @@ nav.navbar {
   width: 100px;
   position: relative;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .nav-item i {
@@ -121,10 +122,10 @@ nav.navbar {
 
 .nav-item.active .indicator {
   display: block;
+  margin: 8px auto 0;
   height: 2px;
   width: 80%;
   background-color: var(--primary-color);
-  margin-top: 8px; /* space above indicator */
 }
 
 /* HOMEPAGE LAYOUT */
@@ -152,7 +153,7 @@ nav.navbar {
 }
 
 .profession {
-  font-weight: 550;
+  font-weight: 500;
   font-size: 1.2rem;
   color: var(--primary-color);
   margin-bottom: 12px;
@@ -179,7 +180,6 @@ nav.navbar {
 .button {
   display: block;
   margin: 1em auto 0 auto;
-  margin-top: 1em;  /* adds space above the button */
   padding: 12px 24px;
   border: none;
   border-radius: 30px;
