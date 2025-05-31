@@ -2,7 +2,7 @@ import urllib3
 from urllib3.exceptions import HTTPError
 from urllib import robotparser
 from bs4 import BeautifulSoup
-import math
+import json
 
 class GradCafeScraper:
     def __init__(self, base_url='https://www.thegradcafe.com', path='/survey', user_agent='natali'):
@@ -28,13 +28,12 @@ class GradCafeScraper:
         if not parser.can_fetch(self.user_agent, self.base_url + self.path):
             raise PermissionError(f"Access to '{self.base_url + self.path}' is disallowed for user-agent '{self.user_agent}'.")
 
-    def scrape_data(self, applicants_amount):
+    def scrape_data(self, page_num):
         self._check_permissions()
-
         rows = []
 
         # Loop through pages
-        for num in range(1, math.ceil(applicants_amount/20)+1):
+        for num in page_num:
             url = self.base_url + self.path + '/index.php?q=&page=' + str(num)
 
             # Request data from URL

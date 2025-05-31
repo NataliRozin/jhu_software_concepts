@@ -5,7 +5,7 @@ from clean import clean_data, save_data
 scraper  = GradCafeScraper()
 
 # Scrape raw data
-raw_rows = scraper.scrape_data([1, 2])
+raw_rows = scraper.scrape_data(200)
 
 # Clean and structure the raw data
 structured_data = clean_data(raw_rows, scraper.base_url)
