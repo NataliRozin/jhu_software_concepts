@@ -13,7 +13,8 @@
         "url": "https://www.thegradcafe.com/result/986067",
         "status": "Accepted on 30 May",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.85"
     },
     "986066": {
         "program": "2nd Military Medical University, Philosophy",
@@ -29,7 +30,10 @@
         "url": "https://www.thegradcafe.com/result/986065",
         "status": "Rejected on 30 May",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.80",
+        "GRE": "326",
+        "GRE V": "158"
     },
     "986064": {
         "program": "Teachers College at Columbia University, Clinical Psychology",
@@ -45,7 +49,9 @@
         "url": "https://www.thegradcafe.com/result/986063",
         "status": "Accepted on 15 Mar",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.84",
+        "GRE": "340"
     },
     "986062": {
         "program": "McMaster University, Occupational Therapy",
@@ -53,7 +59,8 @@
         "url": "https://www.thegradcafe.com/result/986062",
         "status": "Accepted on 15 May",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.9"
     },
     "986061": {
         "program": "Toulouse School of Economics, Economics",
@@ -61,7 +68,10 @@
         "url": "https://www.thegradcafe.com/result/986061",
         "status": "Accepted on 12 Dec",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.85",
+        "GRE": "327",
+        "GRE V": "159"
     },
     "986060": {
         "program": "Florida State University, Social Work",
@@ -77,7 +87,8 @@
         "url": "https://www.thegradcafe.com/result/986059",
         "status": "Accepted on 29 May",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.79"
     },
     "986058": {
         "program": "Columbia University, Biomedical Engineering",
@@ -85,7 +96,8 @@
         "url": "https://www.thegradcafe.com/result/986058",
         "status": "Rejected on 29 May",
         "term": "",
-        "degree": "PhD"
+        "degree": "PhD",
+        "GPA": "3.53"
     },
     "986057": {
         "program": "Stanford University, Electrical Engineering",
@@ -93,7 +105,8 @@
         "url": "https://www.thegradcafe.com/result/986057",
         "status": "Rejected on 29 May",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.85"
     },
     "986056": {
         "program": "Purdue University, Mechanical Engineering",
@@ -101,7 +114,8 @@
         "url": "https://www.thegradcafe.com/result/986056",
         "status": "Rejected on 28 May",
         "term": "",
-        "degree": "PhD"
+        "degree": "PhD",
+        "GPA": "3.8"
     },
     "986055": {
         "program": "University of Toronto, Kinesiology",
@@ -117,7 +131,8 @@
         "url": "https://www.thegradcafe.com/result/986054",
         "status": "Rejected on 27 May",
         "term": "",
-        "degree": "PhD"
+        "degree": "PhD",
+        "GPA": "3.39"
     },
     "986053": {
         "program": "Texas A&M University - Commerce, Applied Linguistics",
@@ -125,7 +140,10 @@
         "url": "https://www.thegradcafe.com/result/986053",
         "status": "Accepted on 27 May",
         "term": "",
-        "degree": "PhD"
+        "degree": "PhD",
+        "GPA": "3.9",
+        "GRE": "163",
+        "GRE V": "170"
     },
     "986052": {
         "program": "University of Denver, School Psychology",
@@ -149,7 +167,8 @@
         "url": "https://www.thegradcafe.com/result/986050",
         "status": "Accepted on 26 Feb",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.9"
     },
     "986049": {
         "program": "Ecole Polytechnique Federale De Lausanne (EPFL), Computer Science",
@@ -165,7 +184,8 @@
         "url": "https://www.thegradcafe.com/result/986048",
         "status": "Accepted on 27 May",
         "term": "",
-        "degree": "Other"
+        "degree": "Other",
+        "GPA": "3.8"
     },
     "986047": {
         "program": "Purdue University, Mechanical Engineering",
@@ -173,7 +193,8 @@
         "url": "https://www.thegradcafe.com/result/986047",
         "status": "Rejected on 28 May",
         "term": "",
-        "degree": "PhD"
+        "degree": "PhD",
+        "GPA": "3.72"
     },
     "986046": {
         "program": "Osmania University, Computer Science",
@@ -181,7 +202,8 @@
         "url": "https://www.thegradcafe.com/result/986046",
         "status": "Accepted on 5 Apr",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "2.96"
     },
     "986045": {
         "program": "McGill University, Mathematics and Statistics",
@@ -189,7 +211,8 @@
         "url": "https://www.thegradcafe.com/result/986045",
         "status": "Rejected on 27 May",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.72"
     },
     "986044": {
         "program": "Illinois Institute of Technology, Mechanical And Aerospace Engineering",
@@ -197,7 +220,10 @@
         "url": "https://www.thegradcafe.com/result/986044",
         "status": "Rejected on 23 May",
         "term": "",
-        "degree": "PhD"
+        "degree": "PhD",
+        "GPA": "3.52",
+        "GRE": "319",
+        "GRE V": "156"
     },
     "986043": {
         "program": "University of Texas at Dallas, Mechanical Engineering",
@@ -205,7 +231,10 @@
         "url": "https://www.thegradcafe.com/result/986043",
         "status": "Accepted on 13 Jan",
         "term": "",
-        "degree": "PhD"
+        "degree": "PhD",
+        "GPA": "3.52",
+        "GRE": "319",
+        "GRE V": "156"
     },
     "986042": {
         "program": "Rensselaer Polytechnic Institute, Mechanical Engineering",
@@ -213,7 +242,10 @@
         "url": "https://www.thegradcafe.com/result/986042",
         "status": "Rejected on 30 Apr",
         "term": "",
-        "degree": "PhD"
+        "degree": "PhD",
+        "GPA": "3.52",
+        "GRE": "319",
+        "GRE V": "156"
     },
     "986041": {
         "program": "Purdue University, Industrial Engineering",
@@ -253,7 +285,8 @@
         "url": "https://www.thegradcafe.com/result/986037",
         "status": "Interview on 16 May",
         "term": "",
-        "degree": "PhD"
+        "degree": "PhD",
+        "GPA": "3.8"
     },
     "986036": {
         "program": "Central Michigan University, Mathematics",
@@ -261,7 +294,10 @@
         "url": "https://www.thegradcafe.com/result/986036",
         "status": "Accepted on 19 May",
         "term": "",
-        "degree": "PhD"
+        "degree": "PhD",
+        "GPA": "3.4",
+        "GRE": "327",
+        "GRE V": "165"
     },
     "986031": {
         "program": "University of Alberta, Speech Language Pathology",
@@ -269,7 +305,8 @@
         "url": "https://www.thegradcafe.com/result/986031",
         "status": "Accepted on 21 May",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.7"
     },
     "986030": {
         "program": "University of Southern California, Mechanical And Aerospace Engineering",
@@ -277,7 +314,8 @@
         "url": "https://www.thegradcafe.com/result/986030",
         "status": "Accepted on 22 May",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.52"
     },
     "986029": {
         "program": "Georgia State University, Business Administration",
@@ -285,7 +323,8 @@
         "url": "https://www.thegradcafe.com/result/986029",
         "status": "Accepted on 21 May",
         "term": "",
-        "degree": "MBA"
+        "degree": "MBA",
+        "GPA": "3.76"
     },
     "986027": {
         "program": "Texas A&M University - College Station, Computer Science",
@@ -293,7 +332,8 @@
         "url": "https://www.thegradcafe.com/result/986027",
         "status": "Accepted on 26 Apr",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.89"
     },
     "986026": {
         "program": "ETH Zurich, Process Engineering",
@@ -309,7 +349,8 @@
         "url": "https://www.thegradcafe.com/result/986025",
         "status": "Accepted on 17 Mar",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "4.0"
     },
     "986024": {
         "program": "University of Toronto, Electrical And Computer Engineering",
@@ -317,6 +358,7 @@
         "url": "https://www.thegradcafe.com/result/986024",
         "status": "Accepted on 25 May",
         "term": "",
-        "degree": "Masters"
+        "degree": "Masters",
+        "GPA": "3.1"
     }
 }
