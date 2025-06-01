@@ -126,7 +126,7 @@ def clean_data(rows, base_url):
 
     return applicants_data
 
-def save_data(data, filename='gradcafe_data.json'):
+def save_data(data, filename='applicant_data.json'):
     """Save parsed data as a formatted JSON file."""
 
     try:
@@ -136,7 +136,7 @@ def save_data(data, filename='gradcafe_data.json'):
     except Exception as e:
         print(f"Error saving data: {e}")
 
-def load_data(filename='gradcafe_data.json'):
+def load_data(filename='applicant_data.json'):
     """Load parsed data from a JSON file."""
     try:
         with open(filename, 'r', encoding='utf-8') as f:
