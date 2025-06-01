@@ -1,11 +1,14 @@
-# Name: Natali Rozin (JHED ID: nrozin1)
+# Name
+NataliRozin (JHED ID: nrozin1)
 
-# Module Info:
-Module 2: Web Scraping
-Assignment: GradCafe Admissions Scraper  
-Due Date: 01/06/2025
+# Module Info
+**Module 2:** Web Scraping
 
-# Approach:
+**Assignment:** GradCafe Admissions Scraper  
+
+**Due Date:** 01/06/2025
+
+# Approach
 This project implements a web scraper that extracts and structures graduate admissions data from [The GradCafe](https://www.thegradcafe.com), a site where applicants share admission outcomes of their graduate school. The project demonstrate cores skills in:
 - URL management using `urllib3`
 - HTML parsing with `BeautifulSoup`
