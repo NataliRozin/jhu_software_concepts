@@ -38,10 +38,10 @@ The solution is structured into three core components — scraping, data cleanin
    - The `clean_html(text)` utilifty function cleans messy HTML formatting within comment strings or other text fields. Specifically, it replaces unusual patterns like `/"word/"` with `'word'`, removes line breaks by flattening them into spaces, collapses multiple whitespace characters into a single space, and trims leading/trailing whitespace to produce clean, readable text.
 
 3. Data Persistence (within `clean.py`)
-   - `save_data(data, filename='gradcafe_data.json')`  
+   - `save_data(data, filename='applicant_data.json')`  
      Saves the cleaned and structured data dictionary to a JSON file with proper formatting and UTF-8 encoding. the function includes error handling to report any issues during the writing process.
 
-   - `load_data(filename='gradcafe_data.json')`  
+   - `load_data(filename='applicant_data.json')`  
      Loads JSON data from the specified file back into a Python dictionary for later use or analysis.
 
    This approach ensures the scraper respects site rules, collects extensive applicant data over many pages, cleans and structures that data into usable form, and saves it for future processing or analysis.
