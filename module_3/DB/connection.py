@@ -1,6 +1,14 @@
 import psycopg
 
 def get_db_connection():
+    """
+    Connects to the PostgreSQL database with preset parameters.
+
+    Returns:
+        psycopg.Connection
+    """
+    
+    # PostgreSQL connection settings
     DB_CONFIG = {
         "host":     "localhost",
         "dbname":   "gradCafe",
