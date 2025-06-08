@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Hello World</h1>
+    <ul>
+        <li>Number of applicants for Fall 2025: {{ results.fall25_count }}</li>
+        <li>Percentage of international students: {{ results.intl_percent }}%</li>
+        <li>Average GPA, GRE, GRE V, GRE AW of international applicants (Fall 2025): 
+            {{ results.intl_avgs[0] }}, {{ results.intl_avgs[1] }}, {{ results.intl_avgs[2] }}, {{ results.intl_avgs[3] }}
+        </li>
+        <li>Average GPA of American applicants (Fall 2025): {{ results.american_avg_gpa }}</li>
+        <li>Number of accepted applicants (Fall 2025): {{ results.accepted_count }}</li>
+        <li>Average GPA of accepted applicants (Fall 2025): {{ results.accepted_avg_gpa }}</li>
+        <li>Number of applicants for JHU CS Masters: {{ results.jhu_cs_masters_count }}</li>
+    </ul>
 {% endblock %}

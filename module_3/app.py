@@ -1,5 +1,6 @@
 from flask import Flask, render_template
-from DB.connection import get_db_connection
+from DB.load_data import DataLoader
+from DB.query_data import Query
 
 # Flask constructor
 def create_app():
@@ -8,13 +9,29 @@ def create_app():
 
     @app. route('/')
     def index() :
-        conn = get_db_connection()
-        cur  = conn.cursor()
-        cur.execute('SELECT * FROM applicants; ')
-        applicants = cur.fetchall ()
-        cur.close()
-        conn.close()
-        return render_template('index.html', applicants=applicants)
+        # Instantiate the DataLoader class
+        loader = DataLoader(db_config, json_path)
+
+        # Load applicant data from the JSON file
+        applicants_info = loader.load_data()
+
+        # Create the applicants table in the database
+        loader.create_table(applicants_info)
+        
+        # Collect data from Query methods
+        q = Query()
+
+        results = {
+            "fall25_count": q.count_fall25_entries(),
+            "intl_percent": q.international_percentage(),
+            "intl_avgs": q.average_scores_international_fall25(),
+            "american_avg_gpa": q.average_gpa_american_fall25(),
+            "accepted_count": q.count_accepted_fall25(),
+            "accepted_avg_gpa": q.average_gpa_accepted_fall25(),
+            "jhu_cs_masters_count": q.count_jhu_cs_masters(),
+        }
+
+        return render_template('index.html', results=results)
 
     return app
 

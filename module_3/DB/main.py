@@ -14,7 +14,7 @@ if __name__ == "__main__":
     }
     
     # Full path to the JSON data file
-    json_path = Path(__file__).parent.parent / 'module_2' / 'applicant_data.json'
+    json_path = 'applicant_data.json'
 
     # Instantiate the DataLoader class
     loader = DataLoader(db_config, json_path)

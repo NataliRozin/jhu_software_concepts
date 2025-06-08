@@ -5,11 +5,11 @@ from connection import get_db_connection
 import json
 
 class DataLoader:
-    def __init__(self, json_path):
+    def __init__(self):
         # Create a connection to the PostgreSQL database
         self.connection = get_db_connection()
-
-        self.json_path  = json_path
+        # Full path to the JSON data file
+        self.json_path  = Path(__file__).parent.parent / 'module_2' / 'applicant_data.json'
     
     def load_data(self, filename='applicant_data.json'):
         """Load parsed data from a JSON file."""

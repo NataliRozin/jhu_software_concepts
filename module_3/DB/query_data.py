@@ -1,14 +1,10 @@
 import psycopg
 from psycopg import OperationalError
-from load_data import DataLoader
+from .connection import get_db_connection
 
 class Query:
-    def __init__(self, db_config):
-        # Initialize with database configuration and path to JSON data
-        self.db_config  = db_config
-
-        # Create a connection to the PostgreSQL database
-        self.connection = psycopg.connect(**self.db_config)
+    def __init__(self):
+        self.connection = get_db_connection()
     
     def count_fall25_entries(self):
         # How many entries do you have in your database who have applied for Fall 2025?
@@ -16,7 +12,6 @@ class Query:
                 SELECT COUNT(term) FROM applicants
                 WHERE term = 'Fall 2025';
                 """
-        
         try:
             # Open cursor to perform database operations
             with self.connection.cursor() as cur:
@@ -51,7 +46,12 @@ class Query:
                 SELECT AVG(GPA), AVG(GRE), AVG(GRE_V), AVG(GRE_AW)
                 FROM applicants
                 WHERE term = 'Fall 2025'
-                AND us_or_international = 'International';
+                AND us_or_international = 'International'
+                AND GPA BETWEEN 0 AND 4.0
+                AND GRE BETWEEN 260 AND 340
+                AND GRE_V BETWEEN 130 AND 170
+                AND GRE_AW BETWEEN 0 AND 6
+                AND MOD(GRE_AW * 10, 5) = 0;
                 """
         try:
             # Open cursor to perform database operations
@@ -68,7 +68,8 @@ class Query:
         query = """
                 SELECT AVG(GPA) FROM applicants
                 WHERE term = 'Fall 2025'
-                AND us_or_international = 'American';
+                AND us_or_international = 'American'
+                AND GPA BETWEEN 0 AND 4.0;
                 """
         try:
             # Open cursor to perform database operations
@@ -97,12 +98,13 @@ class Query:
         except Exception as e:
             print(f"Error executing query: {e}")
         
-    def avg_gpa_accepted_fall25(self):
+    def average_gpa_accepted_fall25(self):
         # What is the average GPA of applicants who applied for Fall 2025 who are Acceptances?
         query = """
                 SELECT AVG(GPA) FROM applicants
                 WHERE term = 'Fall 2025'
-                AND status = status LIKE '%Accepted%';
+                AND status = status LIKE '%Accepted%'
+                AND GPA BETWEEN 0 AND 4.0;
                 """
         try:
             # Open cursor to perform database operations
