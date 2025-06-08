@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Page title block that can be overridden in child templates -->
+  <title>{% block title %}GradCafe Data Analysis{% endblock title %}</title>
+
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <nav>
+    <a href="{{ url_for('index') }}">Analysis</a>"
+  </nav>>
+
+  <hr>
+
+  <div>
+    {% block content %} {% endblock %}
+  </div>
+
+</body>
+
+</html>

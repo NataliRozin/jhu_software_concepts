@@ -1,16 +1,15 @@
 import psycopg
 from psycopg import OperationalError
 from pathlib import Path
+from connection import get_db_connection
 import json
 
 class DataLoader:
-    def __init__(self, db_config, json_path):
-        # Initialize with database configuration and path to JSON data
-        self.db_config  = db_config
-        self.json_path  = json_path
-
+    def __init__(self, json_path):
         # Create a connection to the PostgreSQL database
-        self.connection = psycopg.connect(**self.db_config)
+        self.connection = get_db_connection()
+
+        self.json_path  = json_path
     
     def load_data(self, filename='applicant_data.json'):
         """Load parsed data from a JSON file."""
