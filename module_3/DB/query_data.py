@@ -3,17 +3,31 @@ from psycopg import OperationalError
 from .connection import get_db_connection
 
 class Query:
+    """
+    A class to execute predefined SQL queries on the applicants database.
+
+    Attributes:
+        connection: A psycopg database connection object.
+    """
+
     def __init__(self):
+        """
+        Initializes the Query object by establishing a database connection.
+        """
         self.connection = get_db_connection()
     
     def count_fall25_entries(self):
-        # How many entries do you have in your database who have applied for Fall 2025?
+        """
+        Counts how many entries in the database are for applicants who applied for Fall 2025.
+
+        Returns:
+            int: The number of applicants who applied for Fall 2025.
+        """
+
         query = """
                 SELECT COUNT(term) FROM applicants
                 WHERE term = 'Fall 2025';
                 """
-        query = """
-                SELECT COUNT(*) FROM applicants"""
         try:
             # Open cursor to perform database operations
             with self.connection.cursor() as cur:
@@ -25,7 +39,14 @@ class Query:
             print(f"Error executing query: {e}")
     
     def international_percentage(self):
-        # What percentage of entries are from international students (not American or Other) (to two decimal places)?
+        """
+        Calculates the percentage of applicants who are international students,
+        excluding those categorized as American or Other.
+
+        Returns:
+            float: Percentage of international applicants rounded to two decimals.
+        """
+
         query = """
                 SELECT ROUND(
                  100.0 * COUNT(us_or_international)
@@ -43,7 +64,15 @@ class Query:
             print(f"Error executing query: {e}")
     
     def average_scores_international_fall25(self):
-        # What is the average GPA, GRE, GRE V, GRE AW of applicants who provide these metrics?
+        """
+        Calculates the average GPA, GRE, GRE V, and GRE AW scores
+        for international applicants who applied for Fall 2025, including valid ranges
+        and rounding to two decimal places.
+
+        Returns:
+            list[float]: A list containing the averages [GPA, GRE, GRE_V, GRE_AW].
+        """
+
         query = """
                 SELECT AVG(GPA), AVG(GRE), AVG(GRE_V), AVG(GRE_AW)
                 FROM applicants
@@ -70,7 +99,14 @@ class Query:
             print(f"Error executing query: {e}")
 
     def average_gpa_american_fall25(self):
-        # What is the average GPA of American students in Fall 2025?
+        """
+        Calculates the average GPA of American applicants who applied for Fall 2025
+        with valid GPA scores.
+
+        Returns:
+            float: The average GPA rounded to two decimals.
+        """
+        
         query = """
                 SELECT AVG(GPA) FROM applicants
                 WHERE term = 'Fall 2025'
@@ -88,7 +124,13 @@ class Query:
             print(f"Error executing query: {e}")
 
     def count_accepted_fall25(self):
-        # What percent of entries for Fall 2025 are Acceptances (to two decimal places)?
+        """
+        Calculates the percentage of accepted applicants among those who applied for Fall 2025.
+
+        Returns:
+            float: The acceptance percentage rounded to two decimals.
+        """
+        
         query = """
                 SELECT ROUND(
                  100.0 * COUNT(status)
@@ -107,7 +149,14 @@ class Query:
             print(f"Error executing query: {e}")
         
     def average_gpa_accepted_fall25(self):
-        # What is the average GPA of applicants who applied for Fall 2025 who are Acceptances?
+        """
+        Calculates the average GPA of applicants accepted for Fall 2025
+        with valid GPA scores.
+
+        Returns:
+            float: The average GPA rounded to two decimals.
+        """
+        
         query = """
                 SELECT AVG(GPA) FROM applicants
                 WHERE term = 'Fall 2025'
@@ -125,7 +174,14 @@ class Query:
             print(f"Error executing query: {e}")
         
     def count_jhu_cs_masters(self):
-        # How many entries are from applicants who applied to JHU for a masters degrees in Computer Science?
+        """
+        Counts the number of applicants who applied to Johns Hopkins University
+        for a Master's degree in Computer Science.
+
+        Returns:
+            int: The number of such applicants.
+        """
+        
         query = """
                 SELECT COUNT(*) FROM applicants
                 WHERE (program LIKE '%JHU%' OR LOWER(program) LIKE '%johns hopkins%')
