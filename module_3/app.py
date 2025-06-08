@@ -49,7 +49,7 @@ def create_app():
             "intl_percent": q.international_percentage(),
             "intl_avgs": q.average_scores_international_fall25(),
             "american_avg_gpa": q.average_gpa_american_fall25(),
-            "accepted_count": q.count_accepted_fall25(),
+            "accepted_count": q.accepted_fall25_percentage(),
             "accepted_avg_gpa": q.average_gpa_accepted_fall25(),
             "jhu_cs_masters_count": q.count_jhu_cs_masters(),
         }

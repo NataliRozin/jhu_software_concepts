@@ -123,7 +123,7 @@ class Query:
         except Exception as e:
             print(f"Error executing query: {e}")
 
-    def count_accepted_fall25(self):
+    def accepted_fall25_percentage(self):
         """
         Calculates the percentage of accepted applicants among those who applied for Fall 2025.
 

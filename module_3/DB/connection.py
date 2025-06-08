@@ -5,7 +5,7 @@ def get_db_connection():
         "host":     "localhost",
         "dbname":   "gradCafe",
         "user":     "postgres",
-        "password": "N@t@!ush2395P@sah!tz@",
+        "password": "Password",
         "port":     5432
     }
     
