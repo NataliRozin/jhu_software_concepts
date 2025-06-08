@@ -124,7 +124,7 @@ def clean_data(rows, base_url):
             # Parse additional info in single column rows
             parse_single_column(str(cols), applicants_data[entry_num])
 
-    return applicants_data
+    return list(applicants_data.values())
 
 def save_data(data, filename='applicant_data.json'):
     """Save parsed data as a formatted JSON file."""
