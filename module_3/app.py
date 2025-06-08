@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from DB.load_data import DataLoader
+from DB.load_data import run_loader
 from DB.query_data import Query
 
 # Flask constructor
@@ -9,14 +9,7 @@ def create_app():
 
     @app. route('/')
     def index() :
-        # Instantiate the DataLoader class
-        loader = DataLoader(db_config, json_path)
-
-        # Load applicant data from the JSON file
-        applicants_info = loader.load_data()
-
-        # Create the applicants table in the database
-        loader.create_table(applicants_info)
+        run_loader()
         
         # Collect data from Query methods
         q = Query()

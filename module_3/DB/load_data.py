@@ -1,7 +1,7 @@
 import psycopg
 from psycopg import OperationalError
+from .connection import get_db_connection
 from pathlib import Path
-from connection import get_db_connection
 import json
 
 class DataLoader:
@@ -9,12 +9,12 @@ class DataLoader:
         # Create a connection to the PostgreSQL database
         self.connection = get_db_connection()
         # Full path to the JSON data file
-        self.json_path  = Path(__file__).parent.parent / 'module_2' / 'applicant_data.json'
+        self.json_path = Path(__file__).parent / 'applicant_data.json'
     
-    def load_data(self, filename='applicant_data.json'):
+    def load_data(self):
         """Load parsed data from a JSON file."""
         try:
-            with open(filename, 'r', encoding='utf-8') as f:
+            with open(self.json_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
         except Exception as e:
             print(f"Error loading data: {e}")
@@ -94,29 +94,20 @@ class DataLoader:
         
         # Close connection
         self.connection.close()
-
-# Main execution block
-if __name__ == "__main__":
-    # Define the PostgreSQL connection configuration
-    db_config = {
-        "host":     "localhost",
-        "dbname":   "gradCafe",
-        "user":     "postgres",
-        "password": "N@t@!ush2395P@sah!tz@",
-        "port":     5432
-    }
     
-    # Full path to the JSON data file
-    json_path = Path(__file__).parent.parent / 'module_2' / 'applicant_data.json'
-
+def run_loader():
     # Instantiate the DataLoader class
-    loader = DataLoader(db_config, json_path)
+    loader = DataLoader()
 
     # Create the applicants table in the database
     loader.create_table()
 
     # Load applicant data from the JSON file
-    applicants_info = loader.load_data(json_path)
+    applicants_info = loader.load_data()
 
     # Insert the loaded data into the database table
     loader.insert_to_table(applicants_info)
+
+# Main execution block
+if __name__ == "__main__":
+    run_loader()
