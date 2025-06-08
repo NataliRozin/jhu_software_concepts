@@ -48,15 +48,21 @@ The solution is designed around three core components — database connection an
       - `accepted_fall25_percentage` — Computes the percentage of accepted applicants for Fall 2025.
       - `average_gpa_accepted_fall25()` — Computes average GPA among accepted Fall 2025 applicants.
       - `count_jhu_cs_masters()` — Counts Johns Hopkins University Computer Science Master’s applicants.
+   
+   - Error handling is included.
+
+4. Flask Web Application (`app.py`)
+- Defines the Flask app function create_app() that sets up the web app.
+
+- The root route / performs these steps:
+   - Calls run_loader() to ensure the database table exists and data is loaded from the JSON file if empty.
+   - Instantiates a Query object to retrieve analysis results.
+   - Passes the results to the index.html template for rendering.
 
 Additional Notes:
-- The main.py script acts as the entry point, coordinating the workflow by instantiating the scraper, requesting data for a large number of pages (targeting 10,000+ entries), passing raw data through cleaning, and finally saving the results.
+- The data loading process is designed to avoid duplicates by checking if data already exists before inserting new records.
 
-- The entire codebase sticks closely to the Module 2 assignment guidelines by relying only on urllib3, BeautifulSoup, regex, json, and Python’s built-in libraries.
-
-- The scraper follows ethical scraping practices by respecting the robots.txt rules.
-
-- The design is flexible and easy to update, allowing easy adjustments to the number of pages scraped or addition of new data fields in future iterations.
+- This project assumes a local PostgreSQL instance configured with the credentials specified in connection.py.
 
 # How to Run
 **Step 1:** Make sure you have **Python 3.0+** installed.
@@ -66,9 +72,11 @@ Additional Notes:
 pip install -r requirements.txt
 ```
 
-**Step 3:** Navigate to the project directory and execute:
+**Step 3: Update the database password** in `DB/connection.py` to match your local PostgreSQL setup.
+
+**Step 4:** Navigate to the project directory and execute:
 ```bash
 python app.py
 ```
 
-**Step 4:** Open your browser and go to http://127.0.0.1:8000 to see the website.
+**Step 5:** Open your browser and go to http://127.0.0.1:8000 to see the website.
