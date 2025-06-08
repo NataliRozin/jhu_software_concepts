@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Page title block that can be overridden in child templates -->
   <title>{% block title %}GradCafe Data Analysis{% endblock title %}</title>
 
@@ -15,17 +15,13 @@
 </head>
 
 <body>
+  <header>
+    <h1>Grad Cafe Analysis</h1>
+  </header>
 
-  <nav>
-    <a href="{{ url_for('index') }}">Analysis</a>"
-  </nav>>
-
-  <hr>
-
-  <div>
+  <section>
     {% block content %} {% endblock %}
-  </div>
-
+  </section>
 </body>
 
 </html>

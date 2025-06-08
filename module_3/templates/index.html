@@ -1,15 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <ul>
-        <li>Number of applicants for Fall 2025: {{ results.fall25_count }}</li>
-        <li>Percentage of international students: {{ results.intl_percent }}%</li>
-        <li>Average GPA, GRE, GRE V, GRE AW of international applicants (Fall 2025): 
-            {{ results.intl_avgs[0] }}, {{ results.intl_avgs[1] }}, {{ results.intl_avgs[2] }}, {{ results.intl_avgs[3] }}
-        </li>
-        <li>Average GPA of American applicants (Fall 2025): {{ results.american_avg_gpa }}</li>
-        <li>Number of accepted applicants (Fall 2025): {{ results.accepted_count }}</li>
-        <li>Average GPA of accepted applicants (Fall 2025): {{ results.accepted_avg_gpa }}</li>
-        <li>Number of applicants for JHU CS Masters: {{ results.jhu_cs_masters_count }}</li>
-    </ul>
+<div class="glass-wrapper">
+    <div class="glass-box">
+        <p class="query">Number of applicants for Fall 2025:</p>
+        <p class="result">{{ results.fall25_count }}</p>
+    </div>
+
+    <div class="glass-box">
+        <p class="query">Percentage of international students:</p>
+        <p class="result">{{ results.intl_percent }}%</p>
+    </div>
+
+    <div class="glass-box">
+        <p class="query">Average scores of international applicants (Fall 2025):</p>
+        <p class="result">GPA: {{ results.intl_avgs[0] }}<br>
+                          GRE: {{ results.intl_avgs[1] }}<br>
+                          GRE V: {{ results.intl_avgs[2] }}<br>
+                          GRE AW: {{ results.intl_avgs[3] }}
+        </p>
+    </div>
+
+    <div class="glass-box">
+        <p class="query">Average GPA of American applicants (Fall 2025):</p>
+        <p class="result">{{ results.american_avg_gpa }}</p>
+    </div>
+
+    <div class="glass-box">
+        <p class="query">Number of accepted applicants (Fall 2025):</p>
+        <p class="result">{{ results.accepted_count }}</p>
+    </div>
+
+    <div class="glass-box">
+        <p class="query">Average GPA of accepted applicants (Fall 2025):</p>
+        <p class="result">{{ results.accepted_avg_gpa }}</p>
+    </div>
+
+    <div class="glass-box">
+        <p class="query">Number of applicants for JHU CS Masters:</p>
+        <p class="result">{{ results.jhu_cs_masters_count }}</p>
+    </div>
+</div>
+        
 {% endblock %}
