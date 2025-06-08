@@ -14,10 +14,10 @@
 
     <div class="glass-box">
         <p class="query">Average scores of international applicants (Fall 2025):</p>
-        <p class="result">GPA: {{ results.intl_avgs[0] }}<br>
-                          GRE: {{ results.intl_avgs[1] }}<br>
-                          GRE V: {{ results.intl_avgs[2] }}<br>
-                          GRE AW: {{ results.intl_avgs[3] }}
+        <p class="result">Average GPA: {{ results.intl_avgs[0] }}<br>
+                          Average GRE: {{ results.intl_avgs[1] }}<br>
+                          Average GRE V: {{ results.intl_avgs[2] }}<br>
+                          Average GRE AW: {{ results.intl_avgs[3] }}
         </p>
     </div>
 
@@ -27,8 +27,8 @@
     </div>
 
     <div class="glass-box">
-        <p class="query">Number of accepted applicants (Fall 2025):</p>
-        <p class="result">{{ results.accepted_count }}</p>
+        <p class="query">Percentage of accepted applicants (Fall 2025):</p>
+        <p class="result">{{ results.accepted_count }}%</p>
     </div>
 
     <div class="glass-box">
@@ -37,7 +37,7 @@
     </div>
 
     <div class="glass-box">
-        <p class="query">Number of applicants for JHU CS Masters:</p>
+        <p class="query">Number of applicants for JHU Computer Science Masters:</p>
         <p class="result">{{ results.jhu_cs_masters_count }}</p>
     </div>
 </div>
