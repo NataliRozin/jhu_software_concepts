@@ -5,14 +5,27 @@ from pathlib import Path
 import json
 
 class DataLoader:
+    """
+    A class to handle the process of reading applicant data from a JSON file
+    and loading it into a PostgreSQL database.
+    """
+
     def __init__(self):
+        """
+        Initializes the class by setting up a database connection and the path to the JSON file.
+        """
+
         # Create a connection to the PostgreSQL database
         self.connection = get_db_connection()
         # Full path to the JSON data file
         self.json_path = Path(__file__).parent / 'applicant_data.json'
     
     def load_data(self):
-        """Load parsed data from a JSON file."""
+        """Load parsed data from a JSON file.
+            
+            Returns:
+                list[dict]: A list of dictionaries with applicants records.
+        """
         try:
             with open(self.json_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
@@ -55,7 +68,11 @@ class DataLoader:
             print(f"The error '{e}' occurred")
     
     def insert_to_table(self, data):
-        """Insert a list of applicant dictionaries into the database table if it's empty."""
+        """Insert a list of applicant records into the DB table if it is currently empty.
+        
+        Arguments:
+            data (list[dict]): A list of applicant records to insert into the DB.
+        """
         insert_query = """
                         INSERT INTO applicants (
                         program, comments, date_added, url, status, term,
@@ -63,7 +80,6 @@ class DataLoader:
                         ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         """
         
-        # Get data from dictionary
         try:
             with self.connection.cursor() as cur:
                 # Check if table already has rows
@@ -105,6 +121,13 @@ class DataLoader:
         self.connection.close()
     
 def run_loader():
+    """
+    Run the full data loading process:
+    - Create the applicants table (if it doesn't exist)
+    - Load data from the JSON file
+    - Insert the data into the database (if the table is empty)
+    """
+    
     # Instantiate the DataLoader class
     loader = DataLoader()
 
