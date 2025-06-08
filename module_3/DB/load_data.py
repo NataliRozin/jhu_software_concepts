@@ -55,7 +55,7 @@ class DataLoader:
             print(f"The error '{e}' occurred")
     
     def insert_to_table(self, data):
-        """Insert a list of applicant dictionaries into the database table."""
+        """Insert a list of applicant dictionaries into the database table if it's empty."""
         insert_query = """
                         INSERT INTO applicants (
                         program, comments, date_added, url, status, term,
@@ -66,6 +66,15 @@ class DataLoader:
         # Get data from dictionary
         try:
             with self.connection.cursor() as cur:
+                # Check if table already has rows
+                cur.execute("SELECT COUNT(*) FROM applicants;")
+                count_rows = cur.fetchone()[0]
+
+                if count_rows > 0:
+                    # Table already includes data - close connection
+                    self.connection.close()
+                    return
+
                 # Iterate over each record and insert into the table
                 for row in data:
                     values = (

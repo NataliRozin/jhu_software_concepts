@@ -9,14 +9,14 @@ class Query:
     def count_fall25_entries(self):
         # How many entries do you have in your database who have applied for Fall 2025?
         query = """
-                SELECT COUNT(term) FROM applicants
+                SELECT COUNT(*) FROM applicants
                 WHERE term = 'Fall 2025';
                 """
         try:
             # Open cursor to perform database operations
             with self.connection.cursor() as cur:
                 cur.execute(query)
-                result = cur.fetchall()
+                result = cur.fetchone()
                 return result[0]
             
         except Exception as e:
@@ -34,7 +34,7 @@ class Query:
             # Open cursor to perform database operations
             with self.connection.cursor() as cur:
                 cur.execute(query)
-                result = cur.fetchall()
+                result = cur.fetchone()
                 return result[0]
             
         except Exception as e:
@@ -50,15 +50,14 @@ class Query:
                 AND GPA BETWEEN 0 AND 4.0
                 AND GRE BETWEEN 260 AND 340
                 AND GRE_V BETWEEN 130 AND 170
-                AND GRE_AW BETWEEN 0 AND 6
-                AND MOD(GRE_AW * 10, 5) = 0;
+                AND GRE_AW BETWEEN 0 AND 6;
                 """
         try:
             # Open cursor to perform database operations
             with self.connection.cursor() as cur:
                 cur.execute(query)
                 result = cur.fetchall()
-                return result[0]
+                return list(round(result[0], 2))
             
         except Exception as e:
             print(f"Error executing query: {e}")
@@ -75,8 +74,8 @@ class Query:
             # Open cursor to perform database operations
             with self.connection.cursor() as cur:
                 cur.execute(query)
-                result = cur.fetchall()
-                return result[0]
+                result = cur.fetchone()
+                return round(result[0], 2)
             
         except Exception as e:
             print(f"Error executing query: {e}")
@@ -86,13 +85,13 @@ class Query:
         query = """
                 SELECT COUNT(status) FROM applicants
                 WHERE term = 'Fall 2025'
-                AND status = status LIKE '%Accepted%';
+                AND status LIKE '%Accepted%';
                 """
         try:
             # Open cursor to perform database operations
             with self.connection.cursor() as cur:
                 cur.execute(query)
-                result = cur.fetchall()
+                result = cur.fetchone()
                 return result[0]
             
         except Exception as e:
@@ -103,15 +102,15 @@ class Query:
         query = """
                 SELECT AVG(GPA) FROM applicants
                 WHERE term = 'Fall 2025'
-                AND status = status LIKE '%Accepted%'
+                AND status LIKE '%Accepted%'
                 AND GPA BETWEEN 0 AND 4.0;
                 """
         try:
             # Open cursor to perform database operations
             with self.connection.cursor() as cur:
                 cur.execute(query)
-                result = cur.fetchall()
-                return result[0]
+                result = cur.fetchone()
+                return round(result[0],2)
             
         except Exception as e:
             print(f"Error executing query: {e}")
@@ -128,7 +127,7 @@ class Query:
             # Open cursor to perform database operations
             with self.connection.cursor() as cur:
                 cur.execute(query)
-                result = cur.fetchall()
+                result = cur.fetchone()
                 return result[0]
             
         except Exception as e:
