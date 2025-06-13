@@ -52,5 +52,12 @@ def test_order_str_output(sample_order):
     
     assert str(sample_order) == expected_output
 
-# @pytest.mark.order
-# def test_order_input(sample_order):
+@pytest.mark.order_mark
+def test_order_input(sample_order):
+    # Create a new Order instance
+    assert sample_order.cost == 11
+
+@pytest.mark.order_mark
+def test_order_input(sample_order):
+    # Create a new Order instance
+    assert sample_order.paid is True

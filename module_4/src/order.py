@@ -10,7 +10,7 @@ class Order:
         self.cost = 0
 
         # Flag to indicate if payment has been completed
-        self.payment_done = False
+        self.paid = False
 
     def __str__(self):
         # Print a customers complete order
@@ -22,17 +22,17 @@ class Order:
         return current_order.rstrip('\n')
 
     def input_pizza (self, crust, sauce, cheese, toppings):
-        '''This function inputs the customers order for a given pizza'''
+        '''Add a pizza with specified options to the customer's order.'''
 
-        # Initialize the pizza object
+        # Create a new Pizza instance using the provided crust, sauce(s), cheese, and toppings
         pizza = Pizza(crust, sauce, cheese, toppings)
 
-        # Attach to the order
+        # Add the newly created pizza object to the order's list of pizzas
         self.pizza_objects.append(pizza)
         
-        # Update the cost
+        # Update the total cost of the order by adding the cost of the new pizza
         self.cost = pizza.cost()
 
     def order_paid(self):
         # Set order as paid once payment has been collected
-        a=1
+        self.paid = True
