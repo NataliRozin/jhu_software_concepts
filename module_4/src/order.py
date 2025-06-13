@@ -1,6 +1,9 @@
+from pizza import Pizza
+
 class Order:
     def __init__ (self):
-        # Initializes a customer order
+        '''This function initializes a customer order'''
+        # An empty list to store pizza objects
         self.pizza_objects = []
 
         # Initialize order cost
@@ -16,6 +19,7 @@ class Order:
     def input_pizza (self, crust, sauce, cheese, toppings):
         # Input the customers order for a given pizza
         # Initialize the pizza object and attach to the order
+        pizza = Pizza()
         # Update the cost
         a=1
 
