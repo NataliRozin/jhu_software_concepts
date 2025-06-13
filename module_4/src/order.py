@@ -1,4 +1,4 @@
-from pizza import Pizza
+from .pizza import Pizza
 
 class Order:
     def __init__ (self):
@@ -17,7 +17,7 @@ class Order:
         current_order = "Customer Requested:\n"
         
         for obj in self.pizza_objects:
-            current_order += ""
+            current_order += f"{obj}\n"
 
         return current_order
 

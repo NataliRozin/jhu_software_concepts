@@ -42,19 +42,8 @@ def test_order_initialization():
     # Assert that payment is not yet completed
     assert order.payment_done is False
 
-def test_order_str_output(pizza_order):
-    output = str(pizza_order)  # Call order.__str__()
-    
-    assert "Customer requested:" in output
-    assert pizza_order.sauce in output
-    assert pizza_order.crust in output
-    assert "Cost" in output
-
-    # Assert "Cost" is followed by a "$" and a number 
-    match = re.search(r"Cost:\s\$\d+(\.\d+)?", output)
-    assert match is not None, "Cost not followed by a valid number"
-
-def test_order_input():
+@pytest.mark.order
+def test_order_str_output(sample_order):
     expected_output = (
         "Customer Requested:\n"
         "Crust: thin, Sauce: ['pesto'], Cheese: mozzarella, Toppings: ['mushrooms'], Cost: 11\n"
@@ -62,3 +51,6 @@ def test_order_input():
     )
     
     assert str(sample_order) == expected_output
+
+# @pytest.mark.order
+# def test_order_input(sample_order):
