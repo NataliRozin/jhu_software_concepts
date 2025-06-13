@@ -43,7 +43,7 @@ def parse_single_column(column_data, applicant):
     # Extract applicant origin (either 'international' or 'american')
     us_intl = re.search(r'\b(international|american)\b', column_data, flags=re.IGNORECASE)
     if us_intl:
-        updates["applicant_origin"] = us_intl.group(1)
+        updates["us_or_international"] = us_intl.group(1)
 
     # Extract GPA value (format: 'GPA 3.75')
     gpa = re.search(r'\bGPA\s+(\d\.\d{1,2})', column_data, re.IGNORECASE)
@@ -108,9 +108,8 @@ def clean_data(rows, base_url):
             full_program = cols[1].text.strip().split('\n\n\n\n')
 
             # Build dictionary for this entry
-            data = {"university": cols[0].text.strip(),
-                    "program": full_program[0],
-                    "publish_date": cols[2].text.strip(),
+            data = {"program": f"{full_program[0]}, {cols[0].text.strip()}",
+                    "date_added": cols[2].text.strip(),
                     "url": base_url + entry,
                     "status": cols[3].text.strip(),
                                                     }
