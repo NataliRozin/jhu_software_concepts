@@ -1,7 +1,13 @@
 class Order:
     def __init__ (self):
         # Initializes a customer order
+        self.pizza_objects = []
+
         # Initialize order cost
+        self.cost = 0
+
+        # Flag to indicate if payment has been completed
+        self.payment_done = False
 
     def __str__(self):
         # Print a customers complete order
