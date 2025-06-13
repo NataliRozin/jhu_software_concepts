@@ -29,11 +29,9 @@ class Order:
 
         # Attach to the order
         self.pizza_objects.append(pizza)
-        for pizza in self.pizza_objects:
-            print(pizza)
         
         # Update the cost
-        a=1
+        self.cost = pizza.cost()
 
     def order_paid(self):
         # Set order as paid once payment has been collected

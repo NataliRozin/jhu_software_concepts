@@ -25,7 +25,7 @@ def sample_order():
     
     return order
 
-@pytest.mark.order
+@pytest.mark.order_mark
 def test_order_initialization():
     # Create a new Order instance
     order = Order()
@@ -42,7 +42,7 @@ def test_order_initialization():
     # Assert that payment is not yet completed
     assert order.payment_done is False
 
-@pytest.mark.order
+@pytest.mark.order_mark
 def test_order_str_output(sample_order):
     expected_output = (
         "Customer Requested:\n"
