@@ -14,12 +14,24 @@ class Order:
 
     def __str__(self):
         # Print a customers complete order
-        a=1
+        current_order = "Customer Requested:\n"
+        
+        for obj in self.pizza_objects:
+            current_order += ""
+
+        return current_order
 
     def input_pizza (self, crust, sauce, cheese, toppings):
-        # Input the customers order for a given pizza
-        # Initialize the pizza object and attach to the order
-        pizza = Pizza()
+        '''This function inputs the customers order for a given pizza'''
+
+        # Initialize the pizza object
+        pizza = Pizza(crust, sauce, cheese, toppings)
+
+        # Attach to the order
+        self.pizza_objects.append(pizza)
+        for pizza in self.pizza_objects:
+            print(pizza)
+        
         # Update the cost
         a=1
 

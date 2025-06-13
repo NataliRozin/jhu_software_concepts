@@ -1,8 +1,33 @@
-import pytest
-from PizzaOrder.order import Order
+import pytest # type: ignore
+from src.order import Order # type: ignore
+import re
+
+# Fixture to create an order with two pizzas
+@pytest.fixture
+def sample_order():
+    """
+    Fixture to create an Order instance with two pizzas added.
+
+    Returns:
+        Order: An order containing two pizzas:
+            - Pizza 1: thin crust, pesto sauce, mozzarella, mushrooms
+            - Pizza 2: thick crust, marinara sauce, mozzarella, mushrooms
+    """
+
+    # Create a new Order instance
+    order = Order()
+
+    # Add first pizza
+    order.input_pizza('thin', ['pesto'], 'mozzarella', ['mushrooms'])
+    
+    # Add second pizza
+    order.input_pizza('thick', ['marinara'], 'mozzarella', ['mushrooms'])
+    
+    return order
 
 @pytest.mark.order
 def test_order_initialization():
+    # Create a new Order instance
     order = Order()
 
     # Assert that pizza objects are of type list
@@ -16,3 +41,24 @@ def test_order_initialization():
 
     # Assert that payment is not yet completed
     assert order.payment_done is False
+
+def test_order_str_output(pizza_order):
+    output = str(pizza_order)  # Call order.__str__()
+    
+    assert "Customer requested:" in output
+    assert pizza_order.sauce in output
+    assert pizza_order.crust in output
+    assert "Cost" in output
+
+    # Assert "Cost" is followed by a "$" and a number 
+    match = re.search(r"Cost:\s\$\d+(\.\d+)?", output)
+    assert match is not None, "Cost not followed by a valid number"
+
+def test_order_input():
+    expected_output = (
+        "Customer Requested:\n"
+        "Crust: thin, Sauce: ['pesto'], Cheese: mozzarella, Toppings: ['mushrooms'], Cost: 11\n"
+        "Crust: thick, Sauce: ['marinara'], Cheese: mozzarella, Toppings: ['mushrooms'], Cost: 11"
+    )
+    
+    assert str(sample_order) == expected_output
