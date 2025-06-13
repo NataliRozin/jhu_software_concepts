@@ -19,7 +19,7 @@ class Order:
         for obj in self.pizza_objects:
             current_order += f"{obj}\n"
 
-        return current_order
+        return current_order.rstrip('\n')
 
     def input_pizza (self, crust, sauce, cheese, toppings):
         '''This function inputs the customers order for a given pizza'''
