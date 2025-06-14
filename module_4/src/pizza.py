@@ -9,6 +9,9 @@ class Pizza:
         self.cheese   = cheese
         self.toppings = toppings
         self._cost    = self.cost()
+    
+    def get_cost(self):
+        return self._cost
 
     def __str__(self):
         # Print a pizza

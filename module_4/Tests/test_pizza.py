@@ -53,7 +53,7 @@ def test_pizza_initialization(pizza_obj, crust, sauce, cheese, toppings, cost):
     assert pizza._cost > 0, "Cost should be higher than zero"
 
 # -------------------------------
-# Test: __str__ method
+# Test: Validate __str__ output of Pizza for different pizza object lists
 # Checks that the correct formatted string is returned
 # -------------------------------
 @pytest.mark.pizza_mark
