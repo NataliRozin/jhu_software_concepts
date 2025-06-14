@@ -8,12 +8,13 @@ class Pizza:
         self.sauce    = sauce
         self.cheese   = cheese
         self.toppings = toppings
+        self._cost    = self.cost()
 
     def __str__(self):
         # Print a pizza
-        # Print the cost of that pizza
-        current_pizza = f"Crust: {self.crust}, Sauce: {self.sauce}, Cheese: {self.cheese}, Toppings: {self.toppings}, Cost: {self.cost()}"
-        return current_pizza.strip()
+        pizza_description = f"Crust: {self.crust}, Sauce: {self.sauce}, Cheese: {self.cheese}, Toppings: {self.toppings}, Cost: {self._cost}"
+
+        return pizza_description
 
     def cost (self):
         # Menu prices
@@ -34,6 +35,6 @@ class Pizza:
         toppings_cost = sum(toppings_price[t.lower()] for t in self.toppings)
 
         # Determine the cost of a pizza
-        total_cost = sum([crust_price[self.crust.lower()], sauce_cost, toppings_cost])
+        self._cost = sum([crust_price[self.crust.lower()], sauce_cost, toppings_cost])
 
-        return total_cost
+        return self._cost
