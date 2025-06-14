@@ -1,4 +1,5 @@
 """
+pizza.py
 This module defines a Pizza class, which represents a pizza with its attributes
 (crust, sauce, cheese, toppings) and calculates its total cost based on selected options.
 """
@@ -13,7 +14,7 @@ class Pizza:
         """
         Initialize a pizza with crust, sauce, cheese, and toppings.
 
-        Attributes:
+        Parameters:
             crust (str):     Type of crust
             sauce (list):    List of sauces
             cheese (str):    Type of cheese

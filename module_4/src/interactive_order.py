@@ -8,7 +8,7 @@ def get_valid_list_input(prompt, valid_options, item_name):
             # User input is empty
             print(f"You must choose at least one {item_name}.")
             continue
-        
+            
         # Split input string into a list and remove any surrounding whitespace
         user_input_list = [obj.strip() for obj in user_input.split(",") if obj]
 
@@ -17,7 +17,7 @@ def get_valid_list_input(prompt, valid_options, item_name):
         if invalid:
             print(f"Invalid {item_name}(s): {', '.join(invalid)}. Allowed options are: {', '.join(valid_options)}.")
             continue
-            
+        
         return user_input_list
 
 def choose_crust():
@@ -66,6 +66,6 @@ def take_order_from_user():
         another_pizza = input("Would you like to order another pizza? - Y/N\n")
         if another_pizza.lower() == 'n':
             continue_ordering = False
-    
+
     # Print final order summary
     print(order)

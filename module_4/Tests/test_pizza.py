@@ -16,7 +16,6 @@ pizza_test_cases = [
 # -------------------------------
 # Fixture: Constructs a Pizza instance using the parameters from parametrize
 # -------------------------------
-@pytest.mark.parametrize("crust, sauce, cheese, toppings, cost", pizza_test_cases)
 @pytest.fixture
 def pizza_obj(crust, sauce, cheese, toppings):
     return Pizza(crust=crust, sauce=sauce, cheese=cheese, toppings=toppings)
@@ -51,6 +50,18 @@ def test_pizza_initialization(pizza_obj, crust, sauce, cheese, toppings, cost):
     # --- COST ---
     assert isinstance(pizza._cost, int), "Cost should be an integer"
     assert pizza._cost > 0, "Cost should be higher than zero"
+
+# -------------------------------
+# Test: get_cost method
+# Checks that the get_cost method returns the expected cost
+# -------------------------------
+@pytest.mark.pizza_mark
+@pytest.mark.parametrize("crust, sauce, cheese, toppings, cost", pizza_test_cases)
+def test_pizza_get_cost(pizza_obj, cost):
+    assert pizza_obj.get_cost() == cost, f"Expected {cost}, but got {pizza_obj.get_cost()}"
+
+    # Assert that the cost is updated
+    assert pizza_obj.get_cost() == pizza_obj._cost, "Cost after modification should match the recalculated cost"
 
 # -------------------------------
 # Test: Validate __str__ output of Pizza for different pizza object lists

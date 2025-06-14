@@ -1,4 +1,5 @@
 """
+order.py
 This module contains the 'Order' class, which represents a customer order in a
 pizza ordering system.
 
@@ -10,7 +11,7 @@ from .pizza import Pizza
 
 class Order:
     """
-    Represents a customer's pizza order.
+    This class represents a customer's pizza order.
 
     The 'Order' class stores a list of pizzas, tracks the total cost, 
     and manages whether the order has been paid.
