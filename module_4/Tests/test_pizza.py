@@ -3,7 +3,7 @@ from src.order import Order # type: ignore
 from src.pizza import Pizza # type: ignore
 
 @pytest.mark.pizza_mark
-def test_pizza_initialization(_, mock_pizza):
+def test_pizza_initialization():
     # Create a new Pizza instance
     pizza = Pizza(
         crust='thin',
@@ -19,8 +19,8 @@ def test_pizza_initialization(_, mock_pizza):
     assert isinstance(pizza.sauce, list)
     assert pizza.sauce == ['pesto']
 
-    # Assert that cheese is 'mozarella'
-    assert pizza.cheese == 'mozarella'
+    # Assert that cheese is 'mozzarella'
+    assert pizza.cheese == 'mozzarella'
 
     # Assert that toppings is a list containing one variable - 'mushrooms'
     assert isinstance(pizza.toppings, list)
