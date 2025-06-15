@@ -1,5 +1,5 @@
 """
-This module handles the process of taking a pizza order from the user at a pizzeria. 
+This module handles the process of taking a pizza order from the user at a pizzeria.
 
 The user is prompted to customize their pizza with choices for crust, sauce, and toppings.
 They can also cancel the operation at any time by pressing 'Q'. The module ensures that only
@@ -35,21 +35,19 @@ from .order import Order
 
 def get_valid_input(prompt, valid_options, item_name):
     """
-    Prompts the user to enter a list of items (e.g., sauces, toppings) and ensures that 
-    all inputs are valid.
+    Prompt the user to enter a list of valid items (e.g., sauces, toppings).
 
-    This function repeatedly asks the user for input until they provide a valid list of options 
-    from the predefined valid options.
+    This function repeatedly asks the user for input until a valid list of options
+    from the predefined valid options is provided.
 
-    Parameters:
-    - prompt (str): The message displayed to the user asking for input (e.g., "Choose your sauces").
-    - valid_options (list): A list of valid options that the user can choose from
-      (e.g., ["pesto", "marinara"]).
-    - item_name (str): The name of the item being selected (e.g., "sauce", "topping") to personalize
-      the prompt and error messages.
+    :param str prompt: The message displayed to the user asking for input.
+    :param list valid_options: A list of valid options that the user can choose from.
+    :param str item_name: The name of the item being selected to personalize the prompt
+                          and error messages.
+    :return: A list of valid items chosen by the user, stripped of whitespace.
+    :rtype: list of str
 
-    Returns:
-    - list: A list of valid items chosen by the user, stripped of leading/trailing whitespace.
+    :raises SystemExit: If the user enters 'q' to cancel the order.
     """
 
     while True:
@@ -78,11 +76,12 @@ def get_valid_input(prompt, valid_options, item_name):
 
 def choose_crust():
     """
-    Asks the user to choose a pizza crust type (Thick, Thin, Gluten Free/GF).
+    Ask the user to choose a pizza crust type.
 
-    Continuously prompts the user until a valid choice is made.
+    Valid options include Thick, Thin, Gluten Free (GF).
 
-    Returns the chosen crust type.
+    :return: The chosen crust type(s).
+    :rtype: list of str
     """
     prompt = "Choose a crust - Thick, Thin, Gluten Free (GF):\n"
     valid_options = ["thick", "thin", "gluten free", "gf"]
@@ -91,9 +90,12 @@ def choose_crust():
 
 def choose_sauce():
     """
-    Asks the user to choose one or more sauces for the pizza (Marinara, Pesto, or Liv sauce).
+    Ask the user to choose one or more sauces for the pizza.
 
-    Returns a list of chosen sauces.
+    Valid options include Marinara, Pesto, or Liv sauce.
+
+    :return: The chosen sauce(s).
+    :rtype: list of str
     """
     while True:
         # Promt user for sauce type(s)
@@ -104,9 +106,12 @@ def choose_sauce():
 
 def choose_toppings():
     """
-    Asks the user to choose one or more pizza toppings (Pineapple, Pepperoni, Mushrooms).
+    Ask the user to choose one or more pizza toppings.
 
-    Returns a list of chosen toppings.
+    Valid options include Pineapple, Pepperoni, Mushrooms.
+
+    :return: The chosen topping(s).
+    :rtype: list of str
     """
     while True:
         # Promt user for toppings
@@ -117,12 +122,15 @@ def choose_toppings():
 
 def take_order_from_user():
     """
-    Manages the process of taking a pizza order from the user, including multiple pizzas
-    with customizable crust, sauces, and toppings. The user can cancel the order at any time
-    by pressing 'Q'.
+    Manage the process of taking a pizza order from the user.
 
-    After the user has finished their order, the order is confirmed and marked as paid if
+    This includes allowing the user to order multiple pizzas with customizable crust,
+    sauces, and toppings. The user can cancel the order at any time by pressing 'Q'.
+
+    After the user finishes their order, the order is confirmed and marked as paid if
     the user has paid.
+
+    :return: None
     """
     # Create a new Order instance to store pizzas
     order = Order()
