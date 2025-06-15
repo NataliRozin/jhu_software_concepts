@@ -14,4 +14,6 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
 
-   module_4/index
+   module_4/order
+   module_4/pizza
+   module_4/interactive_order
