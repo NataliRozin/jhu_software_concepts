@@ -9,7 +9,7 @@
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 project = 'Module_4_PizzaOrder'
 copyright = '2025, Natali R.'
