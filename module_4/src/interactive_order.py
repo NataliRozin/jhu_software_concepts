@@ -9,28 +9,6 @@ They can also cancel the operation at any time by pressing 'Q'. The module ensur
 valid inputs are accepted, enforces that only one crust can be selected per pizza, and
 automatically removes duplicate selections for sauces and toppings.
 
-Functions
----------
-- get_valid_input:
-  Prompts the user for a list of valid options (e.g., sauces, toppings),
-  validates inputs, enforces single selection for crust, and removes duplicates.
-
-- choose_crust:
-  Prompts the user to choose a pizza crust type from valid options:
-  Thick, Thin, Gluten Free/GF. Only one crust can be selected.
-
-- choose_sauce:
-  Prompts the user to choose one or more sauces from valid options:
-  Marinara, Pesto, Liv sauce. Duplicate selections are removed.
-
-- choose_toppings:
-  Prompts the user to choose one or more toppings from valid options:
-  Pineapple, Pepperoni, Mushrooms. Duplicate selections are removed.
-
-- take_order_from_user:
-  Manages the full process of taking a pizza order, including multiple pizzas,
-  and final confirmation of payment.
-
 Cancellation
 ------------
 - The user can cancel the entire order process at any time by entering 'Q' at any prompt.
