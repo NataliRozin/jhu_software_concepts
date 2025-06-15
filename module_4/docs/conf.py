@@ -9,11 +9,10 @@
 import sys
 from pathlib import Path
 
-src_path = Path(__file__).parent.parent / "src"
-print(f"Adding to sys.path: {src_path.resolve()}")
+src_path = Path(__file__).resolve().parent.parent / "src"
 sys.path.insert(0, str(src_path))
 
-print()
+print(f"DEBUG: Added to sys.path: {src_path}", flush=True)
 
 project = 'Module_4_PizzaOrder'
 copyright = '2025, Natali R.'
