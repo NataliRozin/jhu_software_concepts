@@ -3,17 +3,18 @@ This module handles the process of taking a pizza order from the user at a pizze
 
 The user is prompted to customize their pizza with choices for crust, sauce, and toppings.
 They can also cancel the operation at any time by pressing 'Q'. The module ensures that only
-valid inputs are accepted.
+valid inputs are accepted, enforces that only one crust can be selected per pizza, and
+automatically removes duplicate selections for sauces and toppings.
 
 Functions:
-- get_valid_input: Prompts the user for a list of valid options (e.g., sauces, toppings) and
-  ensures all inputs are valid.
+- get_valid_input: Prompts the user for a list of valid options (e.g., sauces, toppings),
+  validates inputs, enforces single selection for crust, and removes duplicates.
 - choose_crust: Prompts the user to choose a pizza crust type from valid options:
-  Thick, Thin, Gluten Free/GF.
+  Thick, Thin, Gluten Free/GF. Only one crust can be selected.
 - choose_sauce: Prompts the user to choose one or more sauces from valid options:
-  Marinara, Pesto, Liv sauce.
+  Marinara, Pesto, Liv sauce. Duplicate selections are removed.
 - choose_toppings: Prompts the user to choose one or more toppings from valid options:
-  Pineapple, Pepperoni, Mushrooms.
+  Pineapple, Pepperoni, Mushrooms. Duplicate selections are removed.
 - take_order_from_user: Manages the full process of taking a pizza order, including multiple pizzas,
   and final confirmation of payment.
 
@@ -38,41 +39,57 @@ def get_valid_input(prompt, valid_options, item_name):
     Prompt the user to enter a list of valid items (e.g., sauces, toppings).
 
     This function repeatedly asks the user for input until a valid list of options
-    from the predefined valid options is provided.
+    from the predefined valid options is provided. It also removes any duplicate
+    selections, preserving the original order.
+
+    Special handling is done for the 'crust' item to allow only a single choice.
 
     :param str prompt: The message displayed to the user asking for input.
     :param list valid_options: A list of valid options that the user can choose from.
     :param str item_name: The name of the item being selected to personalize the prompt
                           and error messages.
-    :return: A list of valid items chosen by the user, stripped of whitespace.
+    :return: A list of valid, unique items chosen by the user, stripped of whitespace.
     :rtype: list of str
 
     :raises SystemExit: If the user enters 'q' to cancel the order.
     """
-
     while True:
         user_input = input(prompt).lower().strip()
 
+        # Exit if user chooses to cancel
         if user_input == 'q':
             print("Order canceled by user.")
             sys.exit(0)
 
+        # Ensure user input is not empty
         if not user_input:
-            # User input is empty
             print(f"You must choose at least one {item_name}.")
             continue
 
-        # Split input string into a list and remove any surrounding whitespace
+        # Parse user input into a list, trimming whitespace
         user_input_list = [obj.strip() for obj in user_input.split(",") if obj]
 
-        # Check for any invalid entries
+        # For crust, enforce that only one option is selected
+        if item_name == "crust" and len(user_input_list) > 1:
+            print(f"You can choose only one {item_name}.")
+            continue
+
+        # Validate input against allowed options
         invalid = [obj for obj in user_input_list if obj not in valid_options]
         if invalid:
-            print(f"Invalid {item_name}(s): {', '.join(invalid)}. Allowed options are:"
+            print(f"Invalid {item_name}(s): {', '.join(invalid)}. Allowed options are: "
                   f"{', '.join(valid_options)}.\n")
             continue
 
-        return user_input_list
+        # Remove duplicates while preserving order
+        seen = set()
+        unique_user_input = []
+        for item in user_input_list:
+            if item not in seen:
+                unique_user_input.append(item)
+                seen.add(item)
+
+        return unique_user_input
 
 def choose_crust():
     """
@@ -86,7 +103,7 @@ def choose_crust():
     prompt = "Choose a crust - Thick, Thin, Gluten Free (GF):\n"
     valid_options = ["thick", "thin", "gluten free", "gf"]
 
-    return get_valid_input(prompt, valid_options, item_name="crust")
+    return get_valid_input(prompt, valid_options, item_name="crust")[0]
 
 def choose_sauce():
     """

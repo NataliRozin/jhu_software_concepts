@@ -73,13 +73,13 @@ class MockOrder:
 
 # --- Tests for get_valid_input ---
 @pytest.mark.interactive_mark
-def test_get_valid_input_valid_choice(mock_input_func):
+def test_get_valid_input_valid_choice(monkeypatch):
     """
     Test that `get_valid_input()` returns a valid choice when entered.
 
-    :param mock_input_func: Mocked input fixture to simulate user input.
+    :param mock_input: Mocked input fixture to simulate user input.
     """
-    mock_input_func("pepperoni")
+    monkeypatch.setattr("builtins.input", lambda _: "pepperoni")
     valid_choices = ["pineapple", "pepperoni", "mushrooms"]
 
     result = get_valid_input("Choose your topping:", valid_choices, "topping")
@@ -89,22 +89,27 @@ def test_get_valid_input_valid_choice(mock_input_func):
 @pytest.mark.interactive_mark
 def test_get_valid_input_invalid_choice(monkeypatch):
     """
-    Test that `get_valid_input()` re-prompts after invalid input.
-
-    Simulates two inputs: one invalid, then a valid one.
+    Test that `get_valid_input()` re-prompts after:
+    - empty input
+    - invalid input
+    - multiple crusts (only one allowed)
+    - valid input
     """
-    # First simulate invalid input, then overwrite input with valid
-    responses = iter(["invalid_topping", "pineapple"])
+    responses = iter([
+        "",                          # empty
+        "invalid_topping",           # invalid
+        "thin, thick",               # multiple crusts (invalid)
+        "thin"                       # valid crust
+    ])
     monkeypatch = pytest.MonkeyPatch()
-    monkeypatch.setattr('builtins.input', lambda _: next(responses))
+    monkeypatch.setattr("builtins.input", lambda _: next(responses))
 
-    valid_choices = ["pineapple", "pepperoni", "mushrooms"]
+    valid_crusts = ["thin", "thick", "gluten free", "gf"]
 
-    result = get_valid_input("Choose your topping:", valid_choices, "topping")
+    result = get_valid_input("Choose your crust:", valid_crusts, "crust")
     monkeypatch.undo()
 
-    assert result == ["pineapple"], "Should re-prompt and accept valid second input."
-
+    assert result == ["thin"], "Should accept a single valid crust after rejecting other inputs"
 
 @pytest.mark.interactive_mark
 def test_get_valid_input_exit_on_q(monkeypatch):
@@ -131,16 +136,16 @@ def test_get_valid_input_exit_on_q(monkeypatch):
 
 # --- Tests for choose_crust ---
 @pytest.mark.interactive_mark
-def test_choose_crust_valid(mock_input_func):
+def test_choose_crust_valid(monkeypatch):
     """
     Test that `choose_crust()` accepts a valid crust input.
 
-    :param mock_input_func: Mocked input fixture.
+    :param mock_input: Mocked input fixture.
     """
-    mock_input_func("thin")
+    monkeypatch.setattr('builtins.input', lambda _: "thick")
 
     result = choose_crust()
-    assert result == ["thin"], "Should accept valid crust type."
+    assert result == "thick", "Should accept valid crust type."
 
 
 @pytest.mark.interactive_mark
@@ -150,22 +155,22 @@ def test_choose_crust_invalid(monkeypatch):
 
     :param monkeypatch: pytest fixture.
     """
-    responses = iter(["invalid_crust", "thick"])
+    responses = iter([" ", "thick"])
     monkeypatch.setattr('builtins.input', lambda _: next(responses))
 
     result = choose_crust()
-    assert result == ["thick"], "Should accept second valid crust input."
+    assert result == "thick", "Should accept second valid crust input."
 
 
 # --- Tests for choose_sauce ---
 @pytest.mark.interactive_mark
-def test_choose_sauce_valid(mock_input_func):
+def test_choose_sauce_valid(monkeypatch):
     """
     Test that `choose_sauce()` accepts a valid sauce input.
 
-    :param mock_input_func: Mocked input fixture.
+    :param mock_input: Mocked input fixture.
     """
-    mock_input_func("pesto")
+    monkeypatch.setattr('builtins.input', lambda _: "pesto")
 
     result = choose_sauce()
     assert result == ["pesto"], "Should accept valid sauce input."
@@ -187,13 +192,13 @@ def test_choose_sauce_invalid(monkeypatch):
 
 # --- Tests for choose_toppings ---
 @pytest.mark.interactive_mark
-def test_choose_toppings_valid(mock_input_func):
+def test_choose_toppings_valid(monkeypatch):
     """
     Test that `choose_toppings()` accepts a valid toppings input.
 
-    :param mock_input_func: Mocked input fixture.
+    :param mock_input: Mocked input fixture.
     """
-    mock_input_func("mushrooms")
+    monkeypatch.setattr('builtins.input', lambda _: "mushrooms")
 
     result = choose_toppings()
     assert result == ["mushrooms"], "Should accept valid toppings input."
@@ -211,6 +216,35 @@ def test_choose_toppings_invalid(monkeypatch):
 
     result = choose_toppings()
     assert result == ["pepperoni"], "Should accept second valid topping input."
+
+@pytest.mark.interactive_mark
+def test_take_order_multiple_pizzas_unpaid(monkeypatch):
+    """
+    Test take_order_from_user with multiple pizzas and unpaid status.
+    Covers case where user adds another pizza and doesn't confirm payment.
+    """
+    responses = iter([
+        "thin",              # crust 1
+        "marinara",          # sauce 1
+        "pepperoni",         # topping 1
+        "y",                 # another pizza
+        "gf",                # crust 2
+        "pesto",             # sauce 2
+        "mushrooms",         # topping 2
+        "n",                 # no more pizzas
+        "n"                  # payment NOT confirmed
+    ])
+    monkeypatch.setattr("builtins.input", lambda _: next(responses))
+
+    order_mock = MockOrder()
+    monkeypatch.setattr('src.interactive_order.Order', lambda: order_mock)
+
+    take_order_from_user()
+
+    assert len(order_mock.pizzas) == 2
+    assert order_mock.paid is False
+    assert order_mock.pizzas[0]["crust"] == "thin"
+    assert order_mock.pizzas[1]["crust"] == "gf"
 
 
 # --- Integration Test for take_order_from_user ---
@@ -240,7 +274,7 @@ def test_take_order_from_user(monkeypatch):
     take_order_from_user()
 
     assert order_mock.pizzas == [{
-        'crust': ["thin"],
+        'crust': "thin",
         'sauce': ["pesto"],
         'cheese': "Mozzarella",
         'toppings': ["pepperoni"]

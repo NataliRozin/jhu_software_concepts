@@ -1,0 +1,63 @@
+import pytest
+from src.interactive_order import take_order_from_user
+
+@pytest.mark.integration
+def test_integration_order_flow(monkeypatch, capsys):
+    """
+    Integration test for the complete pizza ordering flow.
+
+    This test simulates a user interacting with the pizza ordering system by providing
+    inputs for two pizzas with different crusts, sauces, and toppings. It also tests
+    the logic for ordering multiple pizzas and confirming payment.
+
+    The test verifies:
+    - The welcome message is printed.
+    - The final printed order summary includes both pizzas with correct details.
+    - The cost appears in the output.
+    
+    The user inputs simulated are:
+    1. Crust for pizza 1: "thin"
+    2. Sauces for pizza 1: "marinara,pesto"
+    3. Toppings for pizza 1: "pineapple,pepperoni"
+    4. Ordering another pizza? "y"
+    5. Crust for pizza 2: "thick"
+    6. Sauces for pizza 2: "liv sauce"
+    7. Toppings for pizza 2: "mushrooms"
+    8. Ordering another pizza? "n"
+    9. Payment confirmation: "y"
+
+    :param monkeypatch: pytest fixture to patch built-in input function for simulating user input.
+    :param capsys: pytest fixture to capture printed output during the test.
+    """
+
+    # Prepare simulated user inputs for the whole flow:
+    inputs = iter([
+        "thin",                  # choose crust pizza 1
+        "marinara,pesto",        # choose sauces pizza 1
+        "pineapple,pepperoni",   # choose toppings pizza 1
+        "y",                     # order another pizza?
+        "thick",                 # choose crust pizza 2
+        "liv sauce",             # choose sauces pizza 2
+        "mushrooms",             # choose toppings pizza 2
+        "n",                     # no more pizzas
+        "y"                      # payment confirmed
+    ])
+
+    monkeypatch.setattr("builtins.input", lambda _: next(inputs))
+
+    # Run the function
+    take_order_from_user()
+
+    # Capture printed output
+    captured = capsys.readouterr()
+
+    # Check for some expected key output phrases and pizza details
+    assert "Welcome to Neopolitan Pizza" in captured.out
+    assert "Customer Requested:" in captured.out
+    assert "Crust: thin" in captured.out
+    assert "Sauce: ['marinara', 'pesto']" in captured.out
+    assert "Toppings: ['pineapple', 'pepperoni']" in captured.out
+    assert "Crust: thick" in captured.out
+    assert "Sauce: ['liv sauce']" in captured.out
+    assert "Toppings: ['mushrooms']" in captured.out
+    assert "Cost:" in captured.out
