@@ -6,9 +6,15 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'module_4'
+project = 'Module_4_PizzaOrder'
 copyright = '2025, Natali R.'
 author = 'Natali R.'
+release = '1.0'
+
+import sys
+from pathlib import Path
+sys.path.insert(0, 
+                str(Path(__file__).parent.parent / 'module_4'))
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
