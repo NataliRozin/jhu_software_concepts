@@ -26,7 +26,7 @@ class Order:
         Initialize a customer order, including an empty list of pizza objects, 
         the total cost of the order (set to 0), and a flag indicating that the 
         order has not been paid.
-
+        
         :ivar list pizza_objects: A list to store pizza objects in the order.
         :ivar float cost: The total cost of the order, initially set to 0.
         :ivar bool paid: A flag indicating whether the order has been paid, initially False.
@@ -58,7 +58,7 @@ class Order:
     def input_pizza (self, crust, sauce, cheese, toppings):
         """
         Add a pizza with specified options to the customer's order.
-
+        
         :param crust: The crust type of the pizza.
         :type crust: str
         :param sauce: The sauce(s) used on the pizza.
