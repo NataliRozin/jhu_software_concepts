@@ -7,7 +7,7 @@ The 'Order' class allows adding pizzas to the order, calculating the total cost,
 and marking the order as paid.
 """
 
-from .pizza import Pizza
+from src.pizza import Pizza # type: ignore
 
 class Order:
     """
