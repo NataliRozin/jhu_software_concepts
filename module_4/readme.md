@@ -9,7 +9,7 @@ Natali Rozin (JHED ID: nrozin1)
 **Due Date:** 17/06/2025
 
 # Approach
-This project implements a Flask web application that loads applicant data from a local JSON file into a PostgreSQL database and queries various statistics to display on a dynamic web page.
+This project simulates a pizza order: It prompts the user for crust type, sauce(s) and topping(s), prints the order and accepts payment. Each module is validated with unit tests, and the whole program flow is validated with an integration test.
 
 The solution is designed around three core components — database connection and loading, querying, and web rendering — each encapsulated in dedicated modules to ensure easy maintainability and clarity.
 

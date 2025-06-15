@@ -1,3 +1,7 @@
+"""
+Integration tests for the pizza ordering workflow in the interactive_order module.
+"""
+
 import pytest
 from src.interactive_order import take_order_from_user
 
@@ -24,13 +28,14 @@ def test_integration_order_flow(monkeypatch, capsys):
     6. Sauces for pizza 2: "liv sauce"
     7. Toppings for pizza 2: "mushrooms"
     8. Ordering another pizza? "n"
-    9. Payment confirmation: "y"
+    9. Payment method: "cash" (added, as required by take_order_from_user)
+    10. Payment confirmation: "y"
 
     :param monkeypatch: pytest fixture to patch built-in input function for simulating user input.
     :param capsys: pytest fixture to capture printed output during the test.
     """
 
-    # Prepare simulated user inputs for the whole flow:
+    # Prepare simulated user inputs for the entire flow:
     inputs = iter([
         "thin",                  # choose crust pizza 1
         "marinara,pesto",        # choose sauces pizza 1
@@ -40,24 +45,26 @@ def test_integration_order_flow(monkeypatch, capsys):
         "liv sauce",             # choose sauces pizza 2
         "mushrooms",             # choose toppings pizza 2
         "n",                     # no more pizzas
+        "cash",                  # payment method
         "y"                      # payment confirmed
     ])
 
+    # Patch input to return the next value from inputs each call
     monkeypatch.setattr("builtins.input", lambda _: next(inputs))
 
-    # Run the function
+    # Run the pizza ordering function
     take_order_from_user()
 
-    # Capture printed output
+    # Capture printed output for assertions
     captured = capsys.readouterr()
 
-    # Check for some expected key output phrases and pizza details
+    # Validate expected key outputs and pizza details in the printed output
     assert "Welcome to Neopolitan Pizza" in captured.out
-    assert "Customer Requested:" in captured.out
     assert "Crust: thin" in captured.out
     assert "Sauce: ['marinara', 'pesto']" in captured.out
     assert "Toppings: ['pineapple', 'pepperoni']" in captured.out
     assert "Crust: thick" in captured.out
     assert "Sauce: ['liv sauce']" in captured.out
     assert "Toppings: ['mushrooms']" in captured.out
-    assert "Cost:" in captured.out
+    assert "Your final cost is:" in captured.out
+    assert "Thank you for your payment! Your order is complete." in captured.out

@@ -71,7 +71,7 @@ class MockOrder:
 
 # --- Tests for get_valid_input ---
 
-@pytest.mark.interactive_mark
+@pytest.mark.order_mark
 def test_get_valid_input(monkeypatch):
     """
     Test suite for get_valid_input function with various input scenarios.
@@ -103,7 +103,7 @@ def test_get_valid_input(monkeypatch):
 
 # --- Tests for choose_* helpers ---
 
-@pytest.mark.interactive_mark
+@pytest.mark.order_mark
 def test_choose_input_variants(monkeypatch):
     """
     Tests for the input helper functions choose_crust, choose_sauce, and choose_toppings.
@@ -131,7 +131,7 @@ def test_choose_input_variants(monkeypatch):
 
 # --- take_order_from_user Integration Tests ---
 
-@pytest.mark.interactive_mark
+@pytest.mark.order_mark
 @pytest.mark.parametrize(
     "responses_list, expected_paid, expected_pizza_count",
     [
@@ -181,7 +181,7 @@ def test_order_flow_variants(monkeypatch, responses_list, expected_paid, expecte
     assert len(order_mock.pizzas) == expected_pizza_count
 
 
-@pytest.mark.interactive_mark
+@pytest.mark.order_mark
 def test_order_flow_quit_on_payment(monkeypatch):
     """
     Test immediate quit behavior when user enters 'q' during payment method selection.
