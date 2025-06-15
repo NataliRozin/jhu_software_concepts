@@ -1,10 +1,14 @@
 """
-order.py
-This module contains the 'Order' class, which represents a customer order in a
+Order Module
+============
+
+This module contains the ``Order`` class, which represents a customer order in a
 pizza ordering system.
 
-The 'Order' class allows adding pizzas to the order, calculating the total cost, 
-and marking the order as paid.
+The ``Order`` class allows:
+- adding pizzas to the order
+- calculating the total cost, 
+- marking the order as paid.
 """
 
 from src.pizza import Pizza # type: ignore
