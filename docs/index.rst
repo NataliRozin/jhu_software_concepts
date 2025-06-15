@@ -1,10 +1,10 @@
-.. Pizza_Order documentation master file, created by
-   sphinx-quickstart on Sun Jun 15 17:28:05 2025.
+.. module_4 documentation master file, created by
+   sphinx-quickstart on Sun Jun 15 18:24:38 2025.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Pizza_Order documentation
-=========================
+module_4 documentation
+======================
 
 Add your content using ``reStructuredText`` syntax. See the
 `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
