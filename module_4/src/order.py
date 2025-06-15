@@ -1,5 +1,5 @@
 """
-Order Module
+Order.py
 ============
 
 This module contains the ``Order`` class, which represents a customer order in a

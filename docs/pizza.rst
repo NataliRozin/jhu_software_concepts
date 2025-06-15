@@ -1,4 +1,4 @@
-Pizza module_4
+module_4: Pizza
 **************
 
 .. automodule:: src.pizza
