@@ -1,4 +1,4 @@
-Interactive Order module
+Interactive Order Module
 ************************
 
 .. automodule:: src.interactive_order

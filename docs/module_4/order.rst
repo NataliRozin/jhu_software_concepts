@@ -1,4 +1,4 @@
-Order module
+Order Module
 ************
 
 .. automodule:: src.order
