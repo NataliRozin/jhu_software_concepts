@@ -54,6 +54,18 @@ class Order:
         current_order += "\n".join(str(obj) for obj in self.pizza_objects)
 
         return current_order.rstrip('\n')
+    
+    def get_cost(self):
+        """
+        Get the total cost of the order.
+
+        This method returns the cumulative cost of all pizzas currently
+        added to the order. The cost is updated each time a pizza is added.
+
+        :return: The total cost of the order.
+        :rtype: float
+        """
+        return self.cost
 
     def input_pizza (self, crust, sauce, cheese, toppings):
         """

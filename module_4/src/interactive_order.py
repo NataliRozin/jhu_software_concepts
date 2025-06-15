@@ -88,13 +88,13 @@ def choose_crust():
     """
     Ask the user to choose a pizza crust type.
 
-    Valid options include Thick, Thin, Gluten Free (GF).
+    Valid options include Thick, Thin, Gluten Free.
 
     :return: The chosen crust type(s).
     :rtype: list of str
     """
-    prompt = "Choose a crust - Thick, Thin, Gluten Free (GF):\n"
-    valid_options = ["thick", "thin", "gluten free", "gf"]
+    prompt = "Choose a crust - Thick, Thin, Gluten Free:\n"
+    valid_options = ["thick", "thin", "gluten free"]
 
     return get_valid_input(prompt, valid_options, item_name="crust")[0]
 
@@ -169,10 +169,31 @@ def take_order_from_user():
         if another_pizza.lower() == 'n':
             continue_ordering = False
 
-    # Ask if the user has paid for the order
-    payment_confirmation = input("Have you paid for the order? - Y/N\n")
-    if payment_confirmation.lower() == 'y':
-        order.order_paid()  # Set the order to paid
-
     # Print final order summary
     print(order)
+
+    # Loop for payment confirmation and method
+    while True:
+        print(f"\nYour final cost is: ${order.get_cost()}")
+        payment_method = input("How would you like to pay? (Cash/Card/Q to cancel):\n").lower()
+
+        if payment_method == 'q':
+            print("Order canceled by user.")
+            sys.exit(0)
+        elif payment_method not in ['cash', 'card']:
+            print("Invalid payment method. Please enter 'Cash', 'Card', or 'Q' to cancel.")
+            continue
+
+        payment_confirmation = input(
+                f"Confirm payment of ${order.get_cost()} by "
+                f"{payment_method.capitalize()}? (Y/N)\n"
+            ).lower()
+
+        if payment_confirmation == 'n':
+            print("Payment not confirmed. Please complete payment to proceed.")
+        elif payment_confirmation == 'y':
+            order.order_paid()  # Mark as paid
+            print("Thank you for your payment! Your order is complete.")
+            break
+        else:
+            print("Invalid input. Please enter 'Y' or 'N'.")
