@@ -1,6 +1,6 @@
 Interactive Order Module
 ************************
 
-.. automodule:: interactive_order
+.. automodule:: src.interactive_order
    :members:
    :show-inheritance:
