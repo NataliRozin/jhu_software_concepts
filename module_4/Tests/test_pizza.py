@@ -69,7 +69,7 @@ def test_get_cost(crust, sauce, cheese, toppings, expected_cost):
 
 @pytest.mark.pizza_mark
 @pytest.mark.parametrize("crust, sauce, cheese, toppings, cost", pizza_test_cases)
-def test_set_cost(crust, sauce, cheese, toppings, cost):
+def test_set_cost_valid(crust, sauce, cheese, toppings, cost):
     """
     Test that set_cost() correctly updates the total cost.
 
@@ -85,6 +85,23 @@ def test_set_cost(crust, sauce, cheese, toppings, cost):
     assert pizza.total_cost == cost, (
         f"set_cost did not update total_cost correctly; expected {cost}, got {pizza.total_cost}"
     )
+
+def test_set_cost_invalid_value():
+    """
+    Test that ``Pizza.set_cost()`` raises a ValueError for invalid cost inputs.
+
+    This test verifies that attempting to set the cost to a negative integer or
+    a non-integer value correctly raises a ``ValueError`` as per the method's contract.
+
+    :raises ValueError: If the cost is negative or not an integer.
+    """
+    pizza = Pizza('thin', ['pesto'], 'mozzarella', ['mushrooms'])
+
+    with pytest.raises(ValueError, match="Cost must be a non-negative integer."):
+        pizza.set_cost(-5)
+    
+    with pytest.raises(ValueError, match="Cost must be a non-negative integer."):
+        pizza.set_cost("free")
 
 @pytest.mark.pizza_mark
 @pytest.mark.parametrize("params", pizza_test_cases)
