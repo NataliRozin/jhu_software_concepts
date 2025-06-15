@@ -56,7 +56,8 @@ def get_valid_input(prompt, valid_options, item_name):
         user_input = input(prompt).lower().strip()
 
         if user_input == 'q':
-            raise OperationCanceledError("The operation was canceled by the user.")
+            print("Order canceled by user.")
+            sys.exit(0)
 
         if not user_input:
             # User input is empty

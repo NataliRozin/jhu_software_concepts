@@ -1,6 +1,14 @@
-import pytest
-import sys
-from src.interactive_order import ( # type: ignore
+"""
+Unit tests for the interactive_order module.
+
+This module tests user input-driven functions for pizza ordering,
+including input validation and overall order flow.
+
+Each test simulates user interaction using mocked input.
+"""
+
+import pytest  # type: ignore
+from src.interactive_order import (  # type: ignore
     get_valid_input,
     choose_crust,
     choose_sauce,
@@ -8,29 +16,34 @@ from src.interactive_order import ( # type: ignore
     take_order_from_user
 )
 
-# Fixture for patching input in tests
+# --- Fixtures and Mocks ---
 @pytest.fixture
 def mock_input(monkeypatch):
-    """Fixture to mock the `input` function for simulating user input."""
-    def _mock_input(prompt, response):
+    """
+    Fixture to mock the `input()` function for simulating user input.
+
+    :param monkeypatch: pytest built-in fixture used to override built-in functions.
+    :return: A function that can mock the input prompt with a predefined response.
+    """
+    def _mock_input(response):
         """
-        Mock the built-in input function to return the provided response.
-        
-        Args:
-        - prompt (str): The input prompt to simulate.
-        - response (str): The simulated user response.
+        Mock a single input prompt.
+
+        :param response: The simulated user input to return.
         """
         monkeypatch.setattr('builtins.input', lambda _: response)
 
     return _mock_input
 
-# Simple mock Order class to replace the actual implementation
+
 class MockOrder:
-    """Mock class to simulate the behavior of the Order class."""
+    """
+    A mock version of the Order class to simulate order-related actions in tests.
+    """
 
     def __init__(self):
         """
-        Initialize the mock order with an empty list of pizzas and a paid status of False.
+        Initialize the mock order with no pizzas and unpaid status.
         """
         self.pizzas = []
         self.paid = False
@@ -39,11 +52,10 @@ class MockOrder:
         """
         Simulate adding a pizza to the order.
 
-        Args:
-        - crust (list): The crust type(s) chosen for the pizza.
-        - sauce (list): The sauce type(s) chosen for the pizza.
-        - cheese (str): The cheese type used in the pizza.
-        - toppings (list): The toppings chosen for the pizza.
+        :param crust: List of crust type(s).
+        :param sauce: List of sauce type(s).
+        :param cheese: Cheese type string.
+        :param toppings: List of topping(s).
         """
         self.pizzas.append({
             'crust': crust,
@@ -53,114 +65,185 @@ class MockOrder:
         })
 
     def order_paid(self):
-        """Simulate marking the order as paid."""
+        """
+        Simulate the order being marked as paid.
+        """
         self.paid = True
 
-# Test for `get_valid_input`
-def test_get_valid_input_valid_choice(mock_input):
-    """Test that `get_valid_input` correctly accepts a valid user choice."""
-    mock_input("Choose your topping:", "pepperoni")
+
+# --- Tests for get_valid_input ---
+@pytest.mark.interactive_mark
+def test_get_valid_input_valid_choice(mock_input_func):
+    """
+    Test that `get_valid_input()` returns a valid choice when entered.
+
+    :param mock_input_func: Mocked input fixture to simulate user input.
+    """
+    mock_input_func("pepperoni")
     valid_choices = ["pineapple", "pepperoni", "mushrooms"]
 
-    # Test with valid input
     result = get_valid_input("Choose your topping:", valid_choices, "topping")
-    assert result == ["pepperoni"]
+    assert result == ["pepperoni"], "Should return valid input in list form."
 
-def test_get_valid_input_invalid_choice(mock_input):
-    """Test that `get_valid_input` re-prompts for input if the user enters an invalid choice."""
-    # Simulate invalid input and then valid input
-    mock_input("Choose your topping:", "invalid_topping")
-    mock_input("Choose your topping:", "pineapple")
+
+@pytest.mark.interactive_mark
+def test_get_valid_input_invalid_choice(monkeypatch):
+    """
+    Test that `get_valid_input()` re-prompts after invalid input.
+
+    Simulates two inputs: one invalid, then a valid one.
+    """
+    # First simulate invalid input, then overwrite input with valid
+    responses = iter(["invalid_topping", "pineapple"])
+    monkeypatch = pytest.MonkeyPatch()
+    monkeypatch.setattr('builtins.input', lambda _: next(responses))
+
     valid_choices = ["pineapple", "pepperoni", "mushrooms"]
 
-    # Test with invalid input followed by valid input
     result = get_valid_input("Choose your topping:", valid_choices, "topping")
-    assert result == ["pineapple"]
+    monkeypatch.undo()
 
-def test_get_valid_input_cancel(mock_input):
-    """Test that `get_valid_input` correctly handles cancellation (user presses 'Q')."""
-    with pytest.raises(OperationCanceledError):  # type: ignore # Expect the custom error to be raised
-        mock_input("Choose your topping:", "q")
+    assert result == ["pineapple"], "Should re-prompt and accept valid second input."
 
-# Test for `choose_crust`
-def test_choose_crust_valid(mock_input):
-    """Test that `choose_crust` accepts a valid crust choice."""
-    mock_input("Choose a crust - Thick, Thin, Gluten Free (GF):", "thin")
 
-    # Test with valid input
-    result = choose_crust()
-    assert result == ["thin"]
-
-def test_choose_crust_invalid(mock_input):
-    """Test that `choose_crust` re-prompts the user for valid input after an invalid choice."""
-    # Simulate invalid input followed by valid input
-    mock_input("Choose a crust - Thick, Thin, Gluten Free (GF):", "invalid_crust")
-    mock_input("Choose a crust - Thick, Thin, Gluten Free (GF):", "thick")
-
-    result = choose_crust()
-    assert result == ["thick"]
-
-# Test for `choose_sauce`
-def test_choose_sauce_valid(mock_input):
-    """Test that `choose_sauce` accepts a valid sauce choice."""
-    mock_input("Choose at least one sauce - Marinara, Pesto or Liv sauce:", "pesto")
-
-    # Test with valid input
-    result = choose_sauce()
-    assert result == ["pesto"]
-
-def test_choose_sauce_invalid(mock_input):
-    """Test that `choose_sauce` re-prompts the user for valid input after an invalid choice."""
-    # Simulate invalid input followed by valid input
-    mock_input("Choose at least one sauce - Marinara, Pesto or Liv sauce:", "invalid_sauce")
-    mock_input("Choose at least one sauce - Marinara, Pesto or Liv sauce:", "marinara")
-
-    result = choose_sauce()
-    assert result == ["marinara"]
-
-# Test for `choose_toppings`
-def test_choose_toppings_valid(mock_input):
-    """Test that `choose_toppings` accepts valid topping choices."""
-    mock_input("Choose at least one topping - Pineapple, Pepperoni, Mushrooms:", "mushrooms")
-
-    # Test with valid input
-    result = choose_toppings()
-    assert result == ["mushrooms"]
-
-def test_choose_toppings_invalid(mock_input):
-    """Test that `choose_toppings` re-prompts the user for valid input after an invalid choice."""
-    # Simulate invalid input followed by valid input
-    mock_input("Choose at least one topping - Pineapple, Pepperoni, Mushrooms:", "invalid_topping")
-    mock_input("Choose at least one topping - Pineapple, Pepperoni, Mushrooms:", "pepperoni")
-
-    result = choose_toppings()
-    assert result == ["pepperoni"]
-
-# Test for `take_order_from_user` (integration test)
-def test_take_order_from_user(mock_input, monkeypatch):
+@pytest.mark.interactive_mark
+def test_get_valid_input_exit_on_q(monkeypatch):
     """
-    Integration test for `take_order_from_user` to ensure the full pizza ordering process
-    works as expected, including order creation and payment confirmation.
-    """
-    # Mock the sequence of user inputs
-    mock_input("Choose a crust - Thick, Thin, Gluten Free (GF):", "thin")
-    mock_input("Choose at least one sauce - Marinara, Pesto or Liv sauce:", "pesto")
-    mock_input("Choose at least one topping - Pineapple, Pepperoni, Mushrooms:", "pepperoni")
-    mock_input("Would you like to order another pizza? - Y/N", "n")
-    mock_input("Have you paid for the order? - Y/N", "y")
+    Test that `get_valid_input()` calls `sys.exit(0)` when the user inputs 'q'.
 
-    # Create a MockOrder instance to simulate the order object
+    This simulates the user canceling the operation by entering 'q', which should
+    cause the program to exit immediately with exit code 0.
+
+    :param monkeypatch: pytest fixture to mock `input()` and simulate user input.
+    :raises SystemExit: Expected when `sys.exit(0)` is called upon cancellation.
+    """
+    # Prepare input to simulate user typing 'q'
+    monkeypatch.setattr('builtins.input', lambda _: 'q')
+
+    # Expect SystemExit when user inputs 'q'
+    with pytest.raises(SystemExit) as e:
+        get_valid_input("Choose your topping:", ["pineapple", "pepperoni"], "topping")
+
+    # Verify exit code (0 means normal exit)
+    assert e.type == SystemExit
+    assert e.value.code == 0
+
+
+# --- Tests for choose_crust ---
+@pytest.mark.interactive_mark
+def test_choose_crust_valid(mock_input_func):
+    """
+    Test that `choose_crust()` accepts a valid crust input.
+
+    :param mock_input_func: Mocked input fixture.
+    """
+    mock_input_func("thin")
+
+    result = choose_crust()
+    assert result == ["thin"], "Should accept valid crust type."
+
+
+@pytest.mark.interactive_mark
+def test_choose_crust_invalid(monkeypatch):
+    """
+    Test that `choose_crust()` re-prompts after an invalid input.
+
+    :param monkeypatch: pytest fixture.
+    """
+    responses = iter(["invalid_crust", "thick"])
+    monkeypatch.setattr('builtins.input', lambda _: next(responses))
+
+    result = choose_crust()
+    assert result == ["thick"], "Should accept second valid crust input."
+
+
+# --- Tests for choose_sauce ---
+@pytest.mark.interactive_mark
+def test_choose_sauce_valid(mock_input_func):
+    """
+    Test that `choose_sauce()` accepts a valid sauce input.
+
+    :param mock_input_func: Mocked input fixture.
+    """
+    mock_input_func("pesto")
+
+    result = choose_sauce()
+    assert result == ["pesto"], "Should accept valid sauce input."
+
+
+@pytest.mark.interactive_mark
+def test_choose_sauce_invalid(monkeypatch):
+    """
+    Test that `choose_sauce()` re-prompts after an invalid input.
+
+    :param monkeypatch: pytest fixture.
+    """
+    responses = iter(["invalid_sauce", "marinara"])
+    monkeypatch.setattr('builtins.input', lambda _: next(responses))
+
+    result = choose_sauce()
+    assert result == ["marinara"], "Should accept second valid sauce input."
+
+
+# --- Tests for choose_toppings ---
+@pytest.mark.interactive_mark
+def test_choose_toppings_valid(mock_input_func):
+    """
+    Test that `choose_toppings()` accepts a valid toppings input.
+
+    :param mock_input_func: Mocked input fixture.
+    """
+    mock_input_func("mushrooms")
+
+    result = choose_toppings()
+    assert result == ["mushrooms"], "Should accept valid toppings input."
+
+
+@pytest.mark.interactive_mark
+def test_choose_toppings_invalid(monkeypatch):
+    """
+    Test that `choose_toppings()` re-prompts after invalid input.
+
+    :param monkeypatch: pytest fixture.
+    """
+    responses = iter(["invalid_topping", "pepperoni"])
+    monkeypatch.setattr('builtins.input', lambda _: next(responses))
+
+    result = choose_toppings()
+    assert result == ["pepperoni"], "Should accept second valid topping input."
+
+
+# --- Integration Test for take_order_from_user ---
+@pytest.mark.interactive_mark
+def test_take_order_from_user(monkeypatch):
+    """
+    Integration test for `take_order_from_user()`.
+
+    Simulates a complete order flow including crust, sauce, toppings selection,
+    and payment. Verifies if the mocked Order object behaves as expected.
+
+    :param monkeypatch: Pytest fixture to override actual Order class and input function.
+    """
+    responses = iter([
+        "thin",          # crust
+        "pesto",         # sauce
+        "pepperoni",     # toppings
+        "n",             # another pizza?
+        "y"              # payment confirmation
+    ])
+
+    monkeypatch.setattr('builtins.input', lambda _: next(responses))
+
     order_mock = MockOrder()
     monkeypatch.setattr('src.interactive_order.Order', lambda: order_mock)
 
-    # Run the function
     take_order_from_user()
 
-    # Assert if the order was called correctly
     assert order_mock.pizzas == [{
         'crust': ["thin"],
         'sauce': ["pesto"],
         'cheese': "Mozzarella",
         'toppings': ["pepperoni"]
-    }]
-    assert order_mock.paid is True
+    }], "Order should contain one correct pizza"
+
+    assert order_mock.paid is True, "Order should be marked as paid"
