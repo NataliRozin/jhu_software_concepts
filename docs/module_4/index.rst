@@ -14,6 +14,6 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
 
-   interactive_order
    order
    pizza
+   interactive_order
