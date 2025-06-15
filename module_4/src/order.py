@@ -6,7 +6,6 @@ This module contains the ``Order`` class, which represents a customer order in a
 pizza ordering system.
 
 The ``Order`` class allows:
-
 - adding pizzas to the order
 - calculating the total cost
 - marking the order as paid
