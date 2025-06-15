@@ -9,7 +9,11 @@
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent / "src"))
+src_path = Path(__file__).parent.parent / "src"
+print(f"Adding to sys.path: {src_path.resolve()}")
+sys.path.insert(0, str(src_path))
+
+print()
 
 project = 'Module_4_PizzaOrder'
 copyright = '2025, Natali R.'
