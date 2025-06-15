@@ -1,5 +1,5 @@
-module_4: Order
-**************
+Order module
+************
 
 .. automodule:: src.order
    :members:

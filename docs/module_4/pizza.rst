@@ -1,5 +1,5 @@
-module_4: Pizza
-**************
+Pizza module
+************
 
 .. automodule:: src.pizza
    :members:
