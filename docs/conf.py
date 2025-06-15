@@ -13,9 +13,8 @@ release = '1.0'
 
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-# sys.path.insert(0, 
-#                 str(Path(__file__).parent.parent / 'module_4'))
+sys.path.insert(0, 
+                str(Path(__file__).parent.parent / 'module_4'))
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
