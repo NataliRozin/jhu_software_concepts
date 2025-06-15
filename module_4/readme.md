@@ -8,61 +8,48 @@ Natali Rozin (JHED ID: nrozin1)
 
 **Due Date:** 17/06/2025
 
+---
+
 # Approach
-This project simulates a pizza order: It prompts the user for crust type, sauce(s) and topping(s), prints the order and accepts payment. Each module is validated with unit tests, and the whole program flow is validated with an integration test.
 
-The solution is designed around three core components — database connection and loading, querying, and web rendering — each encapsulated in dedicated modules to ensure easy maintainability and clarity.
+This assignment focuses on practicing **testing** and **documentation** skills by implementing a simulated pizza ordering system. The system allows users to interactively customize their pizzas by selecting a crust type, one or more sauces, and toppings. Users can order multiple pizzas in a single session, receive a detailed order summary, and complete the order through payment confirmation.
 
-1. Database Connection (`DB/connection.py`):
-   - Provides a `get_db_connection()` function that establishes and returns a connection to the PostgreSQL database using psycopg.
+The pizza ordering system is designed as three main modules, each with a clear responsibility:
 
-   - Configuration details such as host, database name, user credentials, and port are defined within this module.
+- **User Interface (`src/interactive_order.py`)**  
+  Manages the interactive order-taking process.
+  - Prompts users to select crust, sauces, and toppings with input validation and support for cancellation at any stage.
+  - Allows ordering multiple pizzas within one session.  
+  - Handles payment method selection and confirmation, enforcing payment before completing the order.
+  - Ensures only valid inputs, removes duplicate sauces and toppings, and restricts crust selection to exactly one per pizza.
 
-   - Errors during connection attempts are caught and printed, returning None if a connection cannot be established.
+- **Order Management (`order.py`)**  
+  Implements the `Order` class, responsible for managing the customer's order. 
+  - Allows adding pizzas, calculating the total order cost, and marking the order as paid upon successful payment.
+  - Provides a formatted summary string listing all pizzas in the order.
 
-2. Data Loading (`DB/load_data.py`):
-   - This class is responsible for reading applicant data from a JSON file and loading it into a PostgreSQL database.
+- **Pizza Representation (`pizza.py`)**  
+  Implements the `Pizza` class, representing individual pizzas.
+  - Stores attributes such as crust, sauces, cheese, and toppings.  
+  - Calculates pizza cost based on predefined prices for crust, sauces, and toppings.  
+  - Provides a string representation including detailed pizza information and cost.
 
-   - When initializing the class, it establishes a DB connection and defines the path to the JSON file that contains the data to be loaded.
+Together, these modules model the pizza ordering workflow from user input through order creation and payment processing, with clear separation of concerns for maintainability and extensibility.
 
-   - `create_table()` creates a new DB table named `applicants` with specified columns if it doesn’t exist, using a SQL CREATE TABLE IF NOT EXISTS statement.
+# Testing and Documentation
+- **Testing**  
+  - Unit tests cover individual modules to ensure input validation, cost calculation, and order management work correctly.
+  - An integration test simulates a complete ordering session with multiple pizzas and payment confirmation, verifying the entire workflow and user interaction.
 
-   - `load_data()` reads and parses the JSON file, representing applicants records.
+- **Documentation**  
+  - Each module and function includes comprehensive docstrings following the **Sphinx** format.  
+  - Clear descriptions of parameters, return values, and exceptions facilitate maintainability and ease onboarding for new developers.
+  - Full documentation is available at:  
+    [https://pizzaorder.readthedocs.io/en/latest/](https://pizzaorder.readthedocs.io/en/latest/)
 
-   - `insert_to_table(data)` inserts records into the database only if the table is empty, preventing duplicate entries. It first checks the table’s row count and proceeds with insertion only if no records exist.
+This approach offers a hands-on example of applying core software engineering principles within a simple, real-world-inspired system
 
-   - `run_loader()` a function that puts everything together, ensuring the data is loaded and the table is ready.
-
-   - Error handling and closing connections are included.
-
-3. Querying (`DB/query_data.py`)
-   - The Query class handles different SQL queries to analyze the applicants’ data stored in the database.
-
-   - On instantiation, it opens a database connection for running queries.
-
-   - Key methods include:
-      - `count_fall25_entries()` — Counts applicants for the Fall 2025 term.
-      - `international_percentage()` — Computes the percentage of international applicants.
-      - `average_scores_international_fall25()` — Computes average GPA and GRE scores for international Fall 2025 applicants.
-      - `average_gpa_american_fall25()` — Computes average GPA of American Fall 2025 applicants.
-      - `accepted_fall25_percentage` — Computes the percentage of accepted applicants for Fall 2025.
-      - `average_gpa_accepted_fall25()` — Computes average GPA among accepted Fall 2025 applicants.
-      - `count_jhu_cs_masters()` — Counts Johns Hopkins University Computer Science Master’s applicants.
-   
-   - Error handling is included.
-
-4. Flask Web Application (`app.py`)
-- Defines the Flask app function create_app() that sets up the web app.
-
-- The root route / performs these steps:
-   - Calls run_loader() to ensure the database table exists and data is loaded from the JSON file if empty.
-   - Instantiates a Query object to retrieve analysis results.
-   - Passes the results to the index.html template for rendering.
-
-Additional Notes:
-- The data loading process is designed to avoid duplicates by checking if data already exists before inserting new records.
-
-- This project assumes a local PostgreSQL instance configured with the credentials specified in connection.py.
+---
 
 # How to Run
 **Step 1:** Make sure you have **Python 3.0+** installed.
@@ -72,11 +59,9 @@ Additional Notes:
 pip install -r requirements.txt
 ```
 
-**Step 3: Update the database password** in `DB/connection.py` to match your local PostgreSQL setup.
-
-**Step 4:** Navigate to the project directory and execute:
+**Step 3:** Navigate to the project directory and execute:
 ```bash
-python app.py
+python main.py
 ```
 
-**Step 5:** Open your browser and go to http://127.0.0.1:8000 to see the website.
+**Step 4:** Follow the on-screen prompts to customize your pizza order and complete the process.
