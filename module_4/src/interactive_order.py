@@ -1,6 +1,6 @@
 """
 interactive_order.py
-========
+===================
 
 This module handles the process of taking a pizza order from the user at a pizzeria.
 

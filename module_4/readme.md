@@ -59,9 +59,16 @@ This approach offers a hands-on example of applying core software engineering pr
 pip install -r requirements.txt
 ```
 
-**Step 3:** Navigate to the project directory and execute:
+## To interact with the pizza ordering system:
+**Step 1:** Navigate to the project directory and execute:
 ```bash
 python main.py
 ```
 
-**Step 4:** Follow the on-screen prompts to customize your pizza order and complete the process.
+**Step 2:** Follow the on-screen prompts to customize your pizza order and complete the process.
+
+## To run the tests:
+Run the following command to execute tests marked with `order_mark` or `pizza_mark`:
+```bash
+pytest -v -m "order_mark or pizza_mark"
+```

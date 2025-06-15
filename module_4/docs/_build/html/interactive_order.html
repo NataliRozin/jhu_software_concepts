@@ -45,7 +45,20 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="order.html">Order Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pizza.html">Pizza Module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Interactive Order Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interactive Order Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#interactive-order-py">interactive_order.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cancellation">Cancellation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#payment">Payment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.interactive_order.choose_crust"><code class="docutils literal notranslate"><span class="pre">choose_crust()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.interactive_order.choose_sauce"><code class="docutils literal notranslate"><span class="pre">choose_sauce()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.interactive_order.choose_toppings"><code class="docutils literal notranslate"><span class="pre">choose_toppings()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.interactive_order.get_valid_input"><code class="docutils literal notranslate"><span class="pre">get_valid_input()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.interactive_order.take_order_from_user"><code class="docutils literal notranslate"><span class="pre">take_order_from_user()</span></code></a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -72,8 +85,125 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="interactive-order-module">
-<h1>Interactive Order Module<a class="headerlink" href="#interactive-order-module" title="Link to this heading"></a></h1>
+  <section id="module-src.interactive_order">
+<span id="interactive-order-module"></span><h1>Interactive Order Module<a class="headerlink" href="#module-src.interactive_order" title="Link to this heading"></a></h1>
+<section id="interactive-order-py">
+<h2>interactive_order.py<a class="headerlink" href="#interactive-order-py" title="Link to this heading"></a></h2>
+<p>This module handles the process of taking a pizza order from the user at a pizzeria.</p>
+<p>The user is prompted to customize their pizza with choices for crust, sauce, and toppings.
+They can also cancel the operation at any time by pressing ‘Q’. The module ensures that only
+valid inputs are accepted, enforces that only one crust can be selected per pizza, and
+automatically removes duplicate selections for sauces and toppings.</p>
+<section id="cancellation">
+<h3>Cancellation<a class="headerlink" href="#cancellation" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The user can cancel the entire order process at any time by entering ‘Q’ at any prompt.</p></li>
+</ul>
+</section>
+<section id="payment">
+<h3>Payment<a class="headerlink" href="#payment" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>After finishing the order, the user is asked if they have paid. If confirmed, the order is marked
+as paid.</p></li>
+</ul>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The user is prompted to customize their pizza, adding crust, sauce, and toppings, and can continue
+to order more pizzas or cancel the order process.</p></li>
+</ul>
+</section>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.interactive_order.choose_crust">
+<span class="sig-prename descclassname"><span class="pre">src.interactive_order.</span></span><span class="sig-name descname"><span class="pre">choose_crust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.interactive_order.choose_crust" title="Link to this definition"></a></dt>
+<dd><p>Ask the user to choose a pizza crust type.</p>
+<p>Valid options include Thick, Thin, Gluten Free.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The chosen crust type(s).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.interactive_order.choose_sauce">
+<span class="sig-prename descclassname"><span class="pre">src.interactive_order.</span></span><span class="sig-name descname"><span class="pre">choose_sauce</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.interactive_order.choose_sauce" title="Link to this definition"></a></dt>
+<dd><p>Ask the user to choose one or more sauces for the pizza.</p>
+<p>Valid options include Marinara, Pesto, or Liv sauce.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The chosen sauce(s).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.interactive_order.choose_toppings">
+<span class="sig-prename descclassname"><span class="pre">src.interactive_order.</span></span><span class="sig-name descname"><span class="pre">choose_toppings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.interactive_order.choose_toppings" title="Link to this definition"></a></dt>
+<dd><p>Ask the user to choose one or more pizza toppings.</p>
+<p>Valid options include Pineapple, Pepperoni, Mushrooms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The chosen topping(s).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.interactive_order.get_valid_input">
+<span class="sig-prename descclassname"><span class="pre">src.interactive_order.</span></span><span class="sig-name descname"><span class="pre">get_valid_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.interactive_order.get_valid_input" title="Link to this definition"></a></dt>
+<dd><p>Prompt the user to enter a list of valid items (e.g., sauces, toppings).</p>
+<p>This function repeatedly asks the user for input until a valid list of options
+from the predefined valid options is provided. It also removes any duplicate
+selections, preserving the original order.</p>
+<p>Special handling is done for the ‘crust’ item to allow only a single choice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prompt</strong> (<em>str</em>) – The message displayed to the user asking for input.</p></li>
+<li><p><strong>valid_options</strong> (<em>list</em>) – A list of valid options that the user can choose from.</p></li>
+<li><p><strong>item_name</strong> (<em>str</em>) – The name of the item being selected to personalize the prompt
+and error messages.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of valid, unique items chosen by the user, stripped of whitespace.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>SystemExit</strong> – If the user enters ‘q’ to cancel the order.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.interactive_order.take_order_from_user">
+<span class="sig-prename descclassname"><span class="pre">src.interactive_order.</span></span><span class="sig-name descname"><span class="pre">take_order_from_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.interactive_order.take_order_from_user" title="Link to this definition"></a></dt>
+<dd><p>Manage the process of taking a pizza order from the user.</p>
+<p>This includes allowing the user to order multiple pizzas with customizable crust,
+sauces, and toppings. The user can cancel the order at any time by pressing ‘Q’.</p>
+<p>After the user finishes their order, the order is confirmed and marked as paid if
+the user has paid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 

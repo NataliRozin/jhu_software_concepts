@@ -11,8 +11,6 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-print(f"DEBUG: Added to sys.path: {src_path}", flush=True)
-
 project = 'Module_4_PizzaOrder'
 copyright = '2025, Natali R.'
 author = 'Natali R.'

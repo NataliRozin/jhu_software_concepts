@@ -47,12 +47,12 @@
 <li class="toctree-l1"><a class="reference internal" href="order.html">Order Module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Pizza Module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pizza-py">pizza.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pizza.Pizza"><code class="docutils literal notranslate"><span class="pre">Pizza</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pizza.Pizza.__init__"><code class="docutils literal notranslate"><span class="pre">Pizza.__init__()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pizza.Pizza.__str__"><code class="docutils literal notranslate"><span class="pre">Pizza.__str__()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pizza.Pizza.cost"><code class="docutils literal notranslate"><span class="pre">Pizza.cost()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pizza.Pizza.get_cost"><code class="docutils literal notranslate"><span class="pre">Pizza.get_cost()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pizza.Pizza.set_cost"><code class="docutils literal notranslate"><span class="pre">Pizza.set_cost()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.pizza.Pizza"><code class="docutils literal notranslate"><span class="pre">Pizza</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.pizza.Pizza.__init__"><code class="docutils literal notranslate"><span class="pre">Pizza.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.pizza.Pizza.__str__"><code class="docutils literal notranslate"><span class="pre">Pizza.__str__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.pizza.Pizza.cost"><code class="docutils literal notranslate"><span class="pre">Pizza.cost()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.pizza.Pizza.get_cost"><code class="docutils literal notranslate"><span class="pre">Pizza.get_cost()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.pizza.Pizza.set_cost"><code class="docutils literal notranslate"><span class="pre">Pizza.set_cost()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -84,22 +84,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-pizza">
-<span id="pizza-module"></span><h1>Pizza Module<a class="headerlink" href="#module-pizza" title="Link to this heading"></a></h1>
+  <section id="module-src.pizza">
+<span id="pizza-module"></span><h1>Pizza Module<a class="headerlink" href="#module-src.pizza" title="Link to this heading"></a></h1>
 <section id="pizza-py">
 <h2>pizza.py<a class="headerlink" href="#pizza-py" title="Link to this heading"></a></h2>
 <p>This module defines a Pizza class, which represents a pizza with its attributes
 (crust, sauce, cheese, toppings) and calculates its total cost based on selected options.</p>
 </section>
 <dl class="py class">
-<dt class="sig sig-object py" id="pizza.Pizza">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pizza.</span></span><span class="sig-name descname"><span class="pre">Pizza</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sauce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cheese</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toppings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pizza.Pizza" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.pizza.Pizza">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.pizza.</span></span><span class="sig-name descname"><span class="pre">Pizza</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sauce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cheese</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toppings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.pizza.Pizza" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Represents a pizza and calculates its cost based on selected crust, sauce, 
 cheese, and toppings.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="pizza.Pizza.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sauce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cheese</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toppings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pizza.Pizza.__init__" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.pizza.Pizza.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sauce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cheese</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toppings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.pizza.Pizza.__init__" title="Link to this definition"></a></dt>
 <dd><p>Initialize a pizza with crust, sauce, cheese, and toppings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -114,8 +114,8 @@ cheese, and toppings.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="pizza.Pizza.__str__">
-<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pizza.Pizza.__str__" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.pizza.Pizza.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.pizza.Pizza.__str__" title="Link to this definition"></a></dt>
 <dd><p>Return a string representation of the pizza.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -128,8 +128,8 @@ cheese, and toppings.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="pizza.Pizza.cost">
-<span class="sig-name descname"><span class="pre">cost</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pizza.Pizza.cost" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.pizza.Pizza.cost">
+<span class="sig-name descname"><span class="pre">cost</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.pizza.Pizza.cost" title="Link to this definition"></a></dt>
 <dd><p>Calculate the total cost of the pizza based on its crust, sauce, and toppings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -142,8 +142,8 @@ cheese, and toppings.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="pizza.Pizza.get_cost">
-<span class="sig-name descname"><span class="pre">get_cost</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pizza.Pizza.get_cost" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.pizza.Pizza.get_cost">
+<span class="sig-name descname"><span class="pre">get_cost</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.pizza.Pizza.get_cost" title="Link to this definition"></a></dt>
 <dd><p>Return the current cost of the pizza.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -156,8 +156,8 @@ cheese, and toppings.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="pizza.Pizza.set_cost">
-<span class="sig-name descname"><span class="pre">set_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cost</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pizza.Pizza.set_cost" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="src.pizza.Pizza.set_cost">
+<span class="sig-name descname"><span class="pre">set_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cost</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.pizza.Pizza.set_cost" title="Link to this definition"></a></dt>
 <dd><p>Set the cost of the pizza explicitly.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

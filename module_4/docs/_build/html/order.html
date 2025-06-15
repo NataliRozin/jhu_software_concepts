@@ -44,7 +44,18 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Order Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Order Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#order-py">order.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#src.order.Order"><code class="docutils literal notranslate"><span class="pre">Order</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.order.Order.__init__"><code class="docutils literal notranslate"><span class="pre">Order.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.order.Order.__str__"><code class="docutils literal notranslate"><span class="pre">Order.__str__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.order.Order.get_cost"><code class="docutils literal notranslate"><span class="pre">Order.get_cost()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.order.Order.input_pizza"><code class="docutils literal notranslate"><span class="pre">Order.input_pizza()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.order.Order.order_paid"><code class="docutils literal notranslate"><span class="pre">Order.order_paid()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="pizza.html">Pizza Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interactive_order.html">Interactive Order Module</a></li>
 </ul>
@@ -73,8 +84,113 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="order-module">
-<h1>Order Module<a class="headerlink" href="#order-module" title="Link to this heading"></a></h1>
+  <section id="module-src.order">
+<span id="order-module"></span><h1>Order Module<a class="headerlink" href="#module-src.order" title="Link to this heading"></a></h1>
+<section id="order-py">
+<h2>order.py<a class="headerlink" href="#order-py" title="Link to this heading"></a></h2>
+<p>This module contains the <a class="reference internal" href="#src.order.Order" title="src.order.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a> class, which represents a customer order in a
+pizza ordering system.</p>
+<dl class="simple">
+<dt>The <a class="reference internal" href="#src.order.Order" title="src.order.Order"><code class="xref py py-class docutils literal notranslate"><span class="pre">Order</span></code></a> class allows:</dt><dd><ul class="simple">
+<li><p>adding pizzas to the order</p></li>
+<li><p>calculating the total cost</p></li>
+<li><p>marking the order as paid</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.order.Order">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.order.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><a class="headerlink" href="#src.order.Order" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class represents a customer’s pizza order.</p>
+<p>The <cite>Order</cite> class stores a list of pizzas, tracks the total cost, 
+and manages whether the order has been paid.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.order.Order.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.order.Order.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a customer order, including an empty list of pizza objects, 
+the total cost of the order (set to 0), and a flag indicating that the 
+order has not been paid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pizza_objects</strong> (<em>list</em>) – A list to store pizza objects in the order.</p></li>
+<li><p><strong>cost</strong> (<em>float</em>) – The total cost of the order, initially set to 0.</p></li>
+<li><p><strong>paid</strong> (<em>bool</em>) – A flag indicating whether the order has been paid, initially False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.order.Order.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.order.Order.__str__" title="Link to this definition"></a></dt>
+<dd><p>Generate a string representation of the customer’s complete order, 
+listing the pizzas and their details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A formatted string showing the pizzas in the order.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.order.Order.get_cost">
+<span class="sig-name descname"><span class="pre">get_cost</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.order.Order.get_cost" title="Link to this definition"></a></dt>
+<dd><p>Get the total cost of the order.</p>
+<p>This method returns the cumulative cost of all pizzas currently
+added to the order. The cost is updated each time a pizza is added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The total cost of the order.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.order.Order.input_pizza">
+<span class="sig-name descname"><span class="pre">input_pizza</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sauce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cheese</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toppings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.order.Order.input_pizza" title="Link to this definition"></a></dt>
+<dd><p>Add a pizza with specified options to the customer’s order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>crust</strong> (<em>str</em>) – The crust type of the pizza.</p></li>
+<li><p><strong>sauce</strong> (<em>str</em><em> or </em><em>list</em>) – The sauce(s) used on the pizza.</p></li>
+<li><p><strong>cheese</strong> (<em>str</em><em> or </em><em>list</em>) – The cheese(s) used on the pizza.</p></li>
+<li><p><strong>toppings</strong> (<em>list</em>) – The toppings added to the pizza.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Updates<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p>pizza_objects (list): Adds the new pizza object to the list of pizzas in the order.</p></li>
+<li><p>cost (float): Updates the total cost of the order by adding the cost of the new pizza.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.order.Order.order_paid">
+<span class="sig-name descname"><span class="pre">order_paid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.order.Order.order_paid" title="Link to this definition"></a></dt>
+<dd><p>Mark the order as paid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Updates<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p>paid (bool): Sets the ‘paid’ flag to True to indicate that order was paid.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
