@@ -43,7 +43,7 @@ Together, these modules model the pizza ordering workflow from user input throug
 - **Types of Tests:**
  This project includes both unit tests and integration tests to ensure comprehensive coverage.
  - *Unit tests* validate individual modules such as input validation, cost calculation, and order management.  
-  - *Integration test* simulates a complete ordering session with multiple pizzas and payment confirmation, verifying the entire workflow and user interaction.
+ - *Integration test* simulates a complete ordering session with multiple pizzas and payment confirmation, verifying the entire workflow and user interaction.
 
 ## Documentation 
   - Each module and function includes comprehensive docstrings following the **Sphinx** format.  
