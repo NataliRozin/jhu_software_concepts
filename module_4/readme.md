@@ -37,11 +37,15 @@ The pizza ordering system is designed as three main modules, each with a clear r
 Together, these modules model the pizza ordering workflow from user input through order creation and payment processing, with clear separation of concerns for maintainability and extensibility.
 
 # Testing and Documentation
-- **Testing**  
-  - Unit tests cover individual modules to ensure input validation, cost calculation, and order management work correctly.
-  - An integration test simulates a complete ordering session with multiple pizzas and payment confirmation, verifying the entire workflow and user interaction.
 
-- **Documentation**  
+## Testing
+
+- **Types of Tests:**
+ This project includes both unit tests and integration tests to ensure comprehensive coverage.
+ - *Unit tests* validate individual modules such as input validation, cost calculation, and order management.  
+  - *Integration test* simulates a complete ordering session with multiple pizzas and payment confirmation, verifying the entire workflow and user interaction.
+
+## Documentation 
   - Each module and function includes comprehensive docstrings following the **Sphinx** format.  
   - Clear descriptions of parameters, return values, and exceptions facilitate maintainability and ease onboarding for new developers.
   - Full documentation is available at:  
