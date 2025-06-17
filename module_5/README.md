@@ -40,12 +40,10 @@ This repository contains the updated codebase from Module 3, with improvements f
 
 
 **3. Dependency Graph Generation:**
-
-   A module-level dependency graph of `app.py` was generated using `pydeps` and `graphviz` to visualize and analyze code structure.
+ - A module-level dependency graph of `app.py` was generated using `pydeps` and `graphviz` to visualize and analyze code structure.
 
 **4. Environment Management:**
-
-   A local Python virtual environment (not included in the repository) was used to install dependencies and test the codebase, ensuring consistent and isolated runtime behavior.
+ - A local Python virtual environment (not included in the repository) was used to install dependencies and test the codebase, ensuring consistent and isolated runtime behavior.
 
 # How to Run
 **Step 1:** Make sure you have **Python 3.0+** installed.
