@@ -72,7 +72,7 @@ python main.py
 **Step 2:** Follow the on-screen prompts to customize your pizza order and complete the process.
 
 ## To run the tests:
-Run the following command to execute tests marked with `order_mark` or `pizza_mark`:
+Run the following command to execute tests marked with `order` or `pizza`:
 ```bash
 pytest -v -m "order or pizza"
 ```
