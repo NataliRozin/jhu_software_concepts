@@ -11,7 +11,7 @@ Natali Rozin (JHED ID: nrozin1)
 # Approach
 This repository contains the updated codebase from Module 3, with improvements focused on code quality, SQL injection defenses, and dependency visualization.
 
-1. Code linting (quality):
+**1. Code linting (quality):**
 
    - `pylint` was run iteratively on all files, and all warnings and errors were addressed by:
 
@@ -29,7 +29,7 @@ This repository contains the updated codebase from Module 3, with improvements f
       ```
       This resolved issues where `pylint` incorrectly flagged database connection members (e.g., `cursor`, `commit`, `close`), as missing. These were false positives caused by `pylint`'s static analysis, which does not evaluate runtime states such as closed connections.
 
-2. Securing SQL Statements:
+**2. Securing SQL Statements:**
    - All SQL queries were refactored using `psycopg`’s SQL composition API:
 
       - Used `sql.SQL()` to build queries safely.
