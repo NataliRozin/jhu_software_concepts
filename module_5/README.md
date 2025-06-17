@@ -2,23 +2,22 @@
 Natali Rozin (JHED ID: nrozin1)
 
 # Module Info
-**Module 3:** Web Scraping
+**Module 5:** Code Assurance & Security
 
-**Assignment:** Databases
+**Assignment:** Software Assurance, Static Code Analysis, and SQL Injections
 
-**Due Date:** 08/06/2025
+**Due Date:** 17/06/2025
 
 # Approach
-This project implements a Flask web application that loads applicant data from a local JSON file into a PostgreSQL database and queries various statistics to display on a dynamic web page.
+This repository contains the updated codebase from Module 3, with improvements focused on code quality, SQL injection defenses, and dependency visualization.
 
-The solution is designed around three core components — database connection and loading, querying, and web rendering — each encapsulated in dedicated modules to ensure easy maintainability and clarity.
-
-1. Database Connection (`DB/connection.py`):
-   - Provides a `get_db_connection()` function that establishes and returns a connection to the PostgreSQL database using psycopg.
-
-   - Configuration details such as host, database name, user credentials, and port are defined within this module.
-
-   - Errors during connection attempts are caught and printed, returning None if a connection cannot be established.
+1. Code linting (quality):
+   - Iteratively ran pylint on all files and addressed every warning and error by:
+         - Fixing formatting issues (indentation, line length, spacing).
+         - Renaming variables and functions for clarity and consistency.
+         - Adding or improving docstrings and comments.
+         - Removing unused imports and redundant code.
+         - Reducing the number of attributes passed to functions to improve readability and maintainability, making functions simpler and more focused.
 
 2. Data Loading (`DB/load_data.py`):
    - This class is responsible for reading applicant data from a JSON file and loading it into a PostgreSQL database.
