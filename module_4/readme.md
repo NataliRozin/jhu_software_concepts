@@ -74,5 +74,5 @@ python main.py
 ## To run the tests:
 Run the following command to execute tests marked with `order_mark` or `pizza_mark`:
 ```bash
-pytest -v -m "order_mark or pizza_mark"
+pytest -v -m "order or pizza"
 ```

@@ -27,48 +27,6 @@ def mock_input(monkeypatch):
         monkeypatch.setattr("builtins.input", lambda prompt=None: str(next(response_iter)))
     return _mock_input
 
-# class MockOrder:
-#     """
-#     Mock class to simulate an Order object for testing the order flow.
-
-#     :ivar pizzas: List to hold pizza dictionaries.
-#     :type pizzas: list
-#     :ivar paid: Flag indicating whether the order has been paid.
-#     :type paid: bool
-#     """
-
-#     def __init__(self):
-#         self.pizzas = []
-#         self.paid = False
-
-#     def input_pizza(self, crust, sauce, cheese, toppings):
-#         """
-#         Simulates adding a pizza to the order.
-
-#         :param crust: Chosen crust type
-#         :param sauce: Chosen sauce(s)
-#         :param cheese: Cheese type(s)
-#         :param toppings: List of toppings
-#         """
-#         self.pizzas.append({
-#             'crust': crust,
-#             'sauce': sauce,
-#             'cheese': cheese,
-#             'toppings': toppings
-#         })
-
-#     def get_cost(self):
-#         """
-#         Returns a fixed cost for the mock pizza order.
-#         """
-#         return 11
-
-#     def order_paid(self):
-#         """
-#         Marks the order as paid.
-#         """
-#         self.paid = True
-
 
 # --- Tests for get_valid_input ---
 
