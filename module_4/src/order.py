@@ -54,7 +54,7 @@ class Order:
         current_order += "\n".join(str(obj) for obj in self.pizza_objects)
 
         return current_order.rstrip('\n')
-    
+
     def get_cost(self):
         """
         Get the total cost of the order.

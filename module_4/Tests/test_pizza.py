@@ -53,7 +53,7 @@ def test_pizza_initialization(pizza_case):
 
     # --- CHEESE ---
     assert isinstance(pizza.crust, str), "Cheese should be a string"
-    assert pizza.cheese == 'mozzarella', "Cheese must be mozzarella"
+    assert pizza.cheese == cheese, "Cheese must be mozzarella"
 
     # --- TOPPINGS ---
     assert isinstance(pizza.toppings, list), "Toppings should be a list"
@@ -123,7 +123,7 @@ def test_set_cost_invalid_value():
 
     with pytest.raises(ValueError, match="Cost must be a non-negative integer."):
         pizza.set_cost(-5)
-    
+
     with pytest.raises(ValueError, match="Cost must be a non-negative integer."):
         pizza.set_cost("free")
 
