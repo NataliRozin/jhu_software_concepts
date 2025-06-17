@@ -86,6 +86,7 @@ def test_set_cost_valid(crust, sauce, cheese, toppings, cost):
         f"set_cost did not update total_cost correctly; expected {cost}, got {pizza.total_cost}"
     )
 
+@pytest.mark.pizza
 def test_set_cost_invalid_value():
     """
     Test that ``Pizza.set_cost()`` raises a ValueError for invalid cost inputs.
