@@ -3,6 +3,7 @@ Integration tests for the pizza ordering workflow in the interactive_order modul
 """
 
 import pytest
+import runpy
 from src.interactive_order import take_order_from_user # type: ignore
 
 @pytest.mark.order
@@ -53,7 +54,7 @@ def test_integration_order_flow(monkeypatch, capsys):
     monkeypatch.setattr("builtins.input", lambda _: next(inputs))
 
     # Run the pizza ordering function
-    take_order_from_user()
+    runpy.run_path("main.py", run_name="__main__")
 
     # Capture printed output for assertions
     captured = capsys.readouterr()

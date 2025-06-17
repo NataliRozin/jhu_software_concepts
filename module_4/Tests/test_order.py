@@ -26,7 +26,7 @@ def mock_pizza(crust, sauce, cheese, toppings, cost):
     pizza._cost = cost # Directly assign the cost to the mock pizza
     return pizza
 
-@pytest.mark.order_mark
+@pytest.mark.order
 def test_order_initialization(order_fixture):
     """Checking that an order is initialized correctly"""
     order = order_fixture
@@ -41,7 +41,7 @@ def test_order_initialization(order_fixture):
     assert order_fixture.paid is False, "Order should not be marked as paid initially"
 
 ### Checking that __str__ method returns the correct formatted string
-@pytest.mark.order_mark
+@pytest.mark.order
 @pytest.mark.parametrize("pizza_objects, expected_value",
                          [(["Pizza 1"], "Customer Requested:\nPizza 1"),
                           (["Pizza 1", "Pizza 2"], "Customer Requested:\nPizza 1\nPizza 2"),
@@ -60,7 +60,7 @@ def test_order_str_output(order_fixture, pizza_objects, expected_value):
     assert str(order) == expected_value
 
 ### Checking that input_pizza correctly adds a pizza and updates the total cost
-@pytest.mark.order_mark
+@pytest.mark.order
 @pytest.mark.parametrize("crust, sauce, cheese, toppings, cost", pizza_test_cases)
 def test_order_input_with_mock(crust, sauce, cheese, toppings, order_fixture, mock_pizza):
     """Checking that input_pizza correctly adds a pizza and updates the total cost"""
@@ -76,7 +76,7 @@ def test_order_input_with_mock(crust, sauce, cheese, toppings, order_fixture, mo
     assert order.cost == pizza._cost, "Order cost should be the same as mocked pizza cost"
 
 ### Checking that the payment status changes to True when the order is paid
-@pytest.mark.order_mark
+@pytest.mark.order
 def test_order_paid(order_fixture):
     """Checking that the payment status changes when the order is paid"""
     order = order_fixture

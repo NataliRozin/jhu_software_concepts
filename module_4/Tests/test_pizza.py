@@ -13,7 +13,7 @@ pizza_test_cases = [
     ('thin', ['liv sauce', 'pesto'], 'mozzarella', ['mushrooms', 'pepperoni'], 18)
 ]
 
-@pytest.mark.pizza_mark
+@pytest.mark.pizza
 @pytest.mark.parametrize("crust, sauce, cheese, toppings, _", pizza_test_cases)
 def test_pizza_initialization(crust, sauce, cheese, toppings, _):
     """
@@ -49,7 +49,7 @@ def test_pizza_initialization(crust, sauce, cheese, toppings, _):
     assert isinstance(pizza.total_cost, int), "Cost should be an integer"
     assert pizza.total_cost > 0, "Cost should be higher than zero"
 
-@pytest.mark.pizza_mark
+@pytest.mark.pizza
 @pytest.mark.parametrize("crust, sauce, cheese, toppings, expected_cost", pizza_test_cases)
 def test_get_cost(crust, sauce, cheese, toppings, expected_cost):
     """
@@ -67,7 +67,7 @@ def test_get_cost(crust, sauce, cheese, toppings, expected_cost):
         f"Expected cost {expected_cost}, but got {pizza.get_cost()}"
     )
 
-@pytest.mark.pizza_mark
+@pytest.mark.pizza
 @pytest.mark.parametrize("crust, sauce, cheese, toppings, cost", pizza_test_cases)
 def test_set_cost_valid(crust, sauce, cheese, toppings, cost):
     """
@@ -103,7 +103,7 @@ def test_set_cost_invalid_value():
     with pytest.raises(ValueError, match="Cost must be a non-negative integer."):
         pizza.set_cost("free")
 
-@pytest.mark.pizza_mark
+@pytest.mark.pizza
 @pytest.mark.parametrize("params", pizza_test_cases)
 def test_pizza_str(params):
     """
@@ -123,7 +123,7 @@ def test_pizza_str(params):
         f"String representation mismatch.\nExpected: {expected_output}\nGot: {str(pizza)}"
     )
 
-@pytest.mark.pizza_mark
+@pytest.mark.pizza
 @pytest.mark.parametrize("crust, sauce, cheese, toppings, cost", pizza_test_cases)
 def test_pizza_cost(crust, sauce, cheese, toppings, cost):
     """
