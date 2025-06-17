@@ -12,12 +12,22 @@ Natali Rozin (JHED ID: nrozin1)
 This repository contains the updated codebase from Module 3, with improvements focused on code quality, SQL injection defenses, and dependency visualization.
 
 1. Code linting (quality):
-   Iteratively ran pylint on all files and addressed every warning and error by:
-   - Fixing formatting issues (indentation, line length, spacing).
-   - Renaming variables and functions for clarity and consistency.
-   - Adding or improving docstrings and comments.
-   - Removing unused imports and redundant code.
-   - Reducing the number of attributes passed to functions to improve readability and maintainability, making functions simpler and more focused.
+
+   - `pylint` was run iteratively on all files, and every warning and error was addressed by:
+
+      - Correcting formatting issues such as indentation, line length, and spacing.
+      - Renaming variables and functions  to improve clarity and consistency.
+      - Adding or improving docstrings and comments.
+      - Removing unused imports and redundant code.
+      - Reducing the number of parameters passed to functions to improve readability and enhance maintainability.
+
+   - This process continued until all files achieved a perfect score of 10/10 with no lint errors or warnings.
+
+   - A `.pylintrc` configuration file is included to handle false positives by adding:
+   ```bash
+   generated-members=cursor,commit,close
+   ```
+   This resolved false positive errors where `pylint` incorrectly flagged the use of database connection members (e.g., `cursor`, `commit`, `close`), likely because pylint runs static tests and can’t detect if the connection is closed, causing errors when linting happens after the connection is closed.
 
 2. Data Loading (`DB/load_data.py`):
    - This class is responsible for reading applicant data from a JSON file and loading it into a PostgreSQL database.
