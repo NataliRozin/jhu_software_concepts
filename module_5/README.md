@@ -38,12 +38,14 @@ This repository contains the updated codebase from Module 3, with improvements f
    
    - Explicit `LIMIT` clauses were added to all `SELECT` statements to prevent large or unintended data retrieval.
 
-3. Dependency Graph Generation:
+
+**3. Dependency Graph Generation:**
 
    A module-level dependency graph of `app.py` was generated using `pydeps` and `graphviz` to visualize and analyze code structure.
 
-4. Environment Management
-A local Python virtual environment (not included in the repository) was used to install dependencies and test the codebase, ensuring consistent and isolated runtime behavior.
+**4. Environment Management:**
+
+   A local Python virtual environment (not included in the repository) was used to install dependencies and test the codebase, ensuring consistent and isolated runtime behavior.
 
 # How to Run
 **Step 1:** Make sure you have **Python 3.0+** installed.
