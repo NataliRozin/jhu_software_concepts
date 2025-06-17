@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #8e2de2;
+  --accent-color: #00ffe1;
+  --background: #121212;
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  --radius: 16px;
+  --glass-blur: 20px;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --text-light: #ffffff;
+}
+
+body {
+  height: 100%;
+  min-height: 100vh;
+  background: var(--background) url('../img/clean_bg.jpg') no-repeat center center / cover;
+  background-attachment: fixed;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* MAIN LAYOUT */
+main {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* GLASSMORPHISM BOX */
+.glass-wrapper {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.glass-box {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 32px auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-box:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* TYPOGRAPHY */
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.query {
+  font-weight: 600;
+}
+
+.result {
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
