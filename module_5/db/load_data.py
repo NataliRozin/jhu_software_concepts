@@ -114,15 +114,6 @@ class DataLoader:
                             limit = sql.Literal(1)
                         )
 
-        # insert_query = sql.SQL("""
-        #                     INSERT INTO {table_name} (
-        #                         program, comments, date_added, url, status, term,
-        #                         us_or_international, gpa, gre, gre_v, gre_aw, degree
-        #                     ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        #                 """).format(
-        #                     table_name=sql.Identifier("applicants")
-        #                 )
-
         columns = [
             'program', 'comments', 'date_added', 'url', 'status', 'term',
             'us_or_international', 'gpa', 'gre', 'gre_v', 'gre_aw', 'degree'

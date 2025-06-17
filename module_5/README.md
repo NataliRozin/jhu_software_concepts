@@ -13,65 +13,37 @@ This repository contains the updated codebase from Module 3, with improvements f
 
 1. Code linting (quality):
 
-   - `pylint` was run iteratively on all files, and every warning and error was addressed by:
+   - `pylint` was run iteratively on all files, and all warnings and errors were addressed by:
 
-      - Correcting formatting issues such as indentation, line length, and spacing.
-      - Renaming variables and functions  to improve clarity and consistency.
-      - Adding or improving docstrings and comments.
+      - Fixing formatting issues such as indentation, line length, and spacing.
+      - Renaming variables and functions to improve clarity and consistency.
+      - Addin docstrings and comments.
       - Removing unused imports and redundant code.
-      - Reducing the number of parameters passed to functions to improve readability and enhance maintainability.
+      - Reducing the number of parameters passed to functions to improve readability and maintainability.
 
-   - This process continued until all files achieved a perfect score of 10/10 with no lint errors or warnings.
+   - All files were linted until a perfect score of 10/10 was achieved with no remaining errors or warnings.
 
-   - A `.pylintrc` configuration file is included to handle false positives by adding:
-   ```bash
-   generated-members=cursor,commit,close
-   ```
-   This resolved false positive errors where `pylint` incorrectly flagged the use of database connection members (e.g., `cursor`, `commit`, `close`), likely because pylint runs static tests and can’t detect if the connection is closed, causing errors when linting happens after the connection is closed.
+   - A `.pylintrc` configuration file is included to suppress known false positives:
+      ```bash
+      generated-members=cursor,commit,close
+      ```
+      This resolved issues where `pylint` incorrectly flagged database connection members (e.g., `cursor`, `commit`, `close`), as missing. These were false positives caused by `pylint`'s static analysis, which does not evaluate runtime states such as closed connections.
 
-2. Data Loading (`DB/load_data.py`):
-   - This class is responsible for reading applicant data from a JSON file and loading it into a PostgreSQL database.
+2. Securing SQL Statements:
+   - All SQL queries were refactored using `psycopg`’s SQL composition API:
 
-   - When initializing the class, it establishes a DB connection and defines the path to the JSON file that contains the data to be loaded.
-
-   - `create_table()` creates a new DB table named `applicants` with specified columns if it doesn’t exist, using a SQL CREATE TABLE IF NOT EXISTS statement.
-
-   - `load_data()` reads and parses the JSON file, representing applicants records.
-
-   - `insert_to_table(data)` inserts records into the database only if the table is empty, preventing duplicate entries. It first checks the table’s row count and proceeds with insertion only if no records exist.
-
-   - `run_loader()` a function that puts everything together, ensuring the data is loaded and the table is ready.
-
-   - Error handling and closing connections are included.
-
-3. Querying (`DB/query_data.py`)
-   - The Query class handles different SQL queries to analyze the applicants’ data stored in the database.
-
-   - On instantiation, it opens a database connection for running queries.
-
-   - Key methods include:
-      - `count_fall25_entries()` — Counts applicants for the Fall 2025 term.
-      - `international_percentage()` — Computes the percentage of international applicants.
-      - `average_scores_international_fall25()` — Computes average GPA and GRE scores for international Fall 2025 applicants.
-      - `average_gpa_american_fall25()` — Computes average GPA of American Fall 2025 applicants.
-      - `accepted_fall25_percentage` — Computes the percentage of accepted applicants for Fall 2025.
-      - `average_gpa_accepted_fall25()` — Computes average GPA among accepted Fall 2025 applicants.
-      - `count_jhu_cs_masters()` — Counts Johns Hopkins University Computer Science Master’s applicants.
+      - Used `sql.SQL()` to build queries safely.
+      - Used `sql.Identifier()`, `sql.Literal()`, and `sql.placeholders` to securely insert table names, column names, and values.
+      - Separated query definition from execution for improved clarity and safety.
    
-   - Error handling is included.
+   - Explicit `LIMIT` clauses were added to all `SELECT` statements to prevent large or unintended data retrieval.
 
-4. Flask Web Application (`app.py`)
-- Defines the Flask app function create_app() that sets up the web app.
+3. Dependency Graph Generation:
 
-- The root route / performs these steps:
-   - Calls run_loader() to ensure the database table exists and data is loaded from the JSON file if empty.
-   - Instantiates a Query object to retrieve analysis results.
-   - Passes the results to the index.html template for rendering.
+   A module-level dependency graph of `app.py` was generated using `pydeps` and `graphviz` to visualize and analyze code structure.
 
-Additional Notes:
-- The data loading process is designed to avoid duplicates by checking if data already exists before inserting new records.
-
-- This project assumes a local PostgreSQL instance configured with the credentials specified in connection.py.
+4. Environment Management
+A local Python virtual environment (not included in the repository) was used to install dependencies and test the codebase, ensuring consistent and isolated runtime behavior.
 
 # How to Run
 **Step 1:** Make sure you have **Python 3.0+** installed.
@@ -81,11 +53,18 @@ Additional Notes:
 pip install -r requirements.txt
 ```
 
-**Step 3: Update the database password** in `DB/connection.py` to match your local PostgreSQL setup.
+**Step 3: Update the database password** in `db/connection.py` to match your local PostgreSQL setup.
 
-**Step 4:** Navigate to the project directory and execute:
+**Step 4:** Navigate to the project directory and run the linter:
+```bash
+python pylint .
+```
+
+
+Optional further steps:
+**Step 5:** To run the Flask web app, execute:
 ```bash
 python app.py
 ```
 
-**Step 5:** Open your browser and go to http://127.0.0.1:8000 to see the website.
+**Step 6:** Open your browser and go to [http://127.0.0.1:8000](http://127.0.0.1:8000) to see the website.
