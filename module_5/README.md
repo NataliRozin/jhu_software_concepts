@@ -12,12 +12,12 @@ Natali Rozin (JHED ID: nrozin1)
 This repository contains the updated codebase from Module 3, with improvements focused on code quality, SQL injection defenses, and dependency visualization.
 
 1. Code linting (quality):
-   - Iteratively ran pylint on all files and addressed every warning and error by:
-         - Fixing formatting issues (indentation, line length, spacing).
-         - Renaming variables and functions for clarity and consistency.
-         - Adding or improving docstrings and comments.
-         - Removing unused imports and redundant code.
-         - Reducing the number of attributes passed to functions to improve readability and maintainability, making functions simpler and more focused.
+   Iteratively ran pylint on all files and addressed every warning and error by:
+   - Fixing formatting issues (indentation, line length, spacing).
+   - Renaming variables and functions for clarity and consistency.
+   - Adding or improving docstrings and comments.
+   - Removing unused imports and redundant code.
+   - Reducing the number of attributes passed to functions to improve readability and maintainability, making functions simpler and more focused.
 
 2. Data Loading (`DB/load_data.py`):
    - This class is responsible for reading applicant data from a JSON file and loading it into a PostgreSQL database.
