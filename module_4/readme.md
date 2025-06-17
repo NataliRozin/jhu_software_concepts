@@ -40,26 +40,10 @@ Together, these modules model the pizza ordering workflow from user input throug
 
 ## Testing
 
-- **Types of Tests:**
- This project includes both unit tests and integration tests to ensure comprehensive coverage.
- - *Unit tests* validate individual modules such as input validation, cost calculation, and order management.  
- - *Integration test* simulates a complete ordering session with multiple pizzas and payment confirmation, verifying the entire workflow and user interaction.
-
-- Pytest results show a full coverage:
-Name                              Stmts   Miss  Cover
------------------------------------------------------
-main.py                               2      0   100%
-src\__init__.py                       0      0   100%
-src\interactive_order.py             70      0   100%
-src\order.py                         18      0   100%
-src\pizza.py                         25      0   100%
-tests\__init__.py                     0      0   100%
-tests\test_integration.py            17      0   100%
-tests\test_interactive_order.py      36      0   100%
-tests\test_order.py                  36      0   100%
-tests\test_pizza.py                  49      0   100%
------------------------------------------------------
-TOTAL                               253      0   100%
+**Types of Tests:**
+This project includes both unit tests and integration tests to ensure comprehensive coverage.
+- *Unit tests* validate individual modules such as input validation, cost calculation, and order management.  
+- *Integration test* simulates a complete ordering session with multiple pizzas and payment confirmation, verifying the entire workflow and user interaction.
 
 ## Documentation 
   - Each module and function includes comprehensive docstrings following the **Sphinx** format.  
