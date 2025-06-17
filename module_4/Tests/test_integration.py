@@ -2,9 +2,8 @@
 Integration tests for the pizza ordering workflow in the interactive_order module.
 """
 
-import pytest
 import runpy
-from src.interactive_order import take_order_from_user # type: ignore
+import pytest
 
 @pytest.mark.order
 def test_integration_order_flow(monkeypatch, capsys):

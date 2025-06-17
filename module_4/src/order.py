@@ -35,7 +35,7 @@ class Order:
         self.pizza_objects = []
 
         # Initialize order cost
-        self.cost = 0
+        self.total_cost = 0
 
         # Flag to indicate if payment has been completed
         self.paid = False
@@ -65,7 +65,7 @@ class Order:
         :return: The total cost of the order.
         :rtype: float
         """
-        return self.cost
+        return self.total_cost
 
     def input_pizza (self, crust, sauce, cheese, toppings):
         """
@@ -92,7 +92,7 @@ class Order:
         self.pizza_objects.append(pizza)
 
         # Update the total cost of the order by adding the cost of the new pizza
-        self.cost += pizza.get_cost()
+        self.total_cost += pizza.get_cost()
 
     def order_paid(self):
         """

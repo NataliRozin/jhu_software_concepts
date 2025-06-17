@@ -54,12 +54,12 @@ src\interactive_order.py             70      0   100%
 src\order.py                         18      0   100%
 src\pizza.py                         25      0   100%
 tests\__init__.py                     0      0   100%
-tests\test_integration.py            18      0   100%
+tests\test_integration.py            17      0   100%
 tests\test_interactive_order.py      36      0   100%
-tests\test_order.py                  37      0   100%
+tests\test_order.py                  36      0   100%
 tests\test_pizza.py                  49      0   100%
 -----------------------------------------------------
-TOTAL                               255      0   100%
+TOTAL                               253      0   100%
 
 ## Documentation 
   - Each module and function includes comprehensive docstrings following the **Sphinx** format.  

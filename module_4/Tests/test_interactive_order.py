@@ -112,7 +112,8 @@ def mock_input(monkeypatch):
             "expect_exit": True,
         },
     ],
-    ids=["valid_single_topping", "duplicate_topping", "crust", "valid_multiple_sauces", "quit_input"],
+    ids=["valid_single_topping", "duplicate_topping", "crust",
+         "valid_multiple_sauces", "quit_input"],
 )
 def test_input(mock_input, case):
     """
@@ -150,6 +151,24 @@ def test_input(mock_input, case):
     ids=["choose_crust", "choose_sauce", "choose_toppings", "choose_crust_exit"]
 )
 def test_choose_input_variants(mock_input, func, inputs, expected):
+    """
+    Test the behavior of input-handling functions (choose_crust, choose_sauce, choose_toppings)
+    with various user input scenarios.
+
+    This test verifies that:
+    - Invalid inputs are retried until valid inputs are received.
+    - Valid inputs are returned correctly.
+    - Entering 'q' causes the program to exit via SystemExit.
+
+    :param mock_input: Fixture that mocks the built-in input() function.
+    :type mock_input: Callable[[List[str]], None]
+    :param func: The function being tested (choose_crust, choose_sauce, choose_toppings).
+    :type func: Callable[[], str or List[str]]
+    :param inputs: Simulated user inputs provided to the function.
+    :type inputs: list[str]
+    :param expected: Expected return value or None if SystemExit is expected.
+    :type expected: str or list[str] or None
+    """
     mock_input(inputs)
 
     if expected is None:
@@ -158,52 +177,60 @@ def test_choose_input_variants(mock_input, func, inputs, expected):
     else:
         assert func() == expected
 
-# --- take_order_from_user Integration Tests ---
+
+# --- Functional Tests for Payment Flow in take_order_from_user ---
 
 @pytest.mark.order
 @pytest.mark.parametrize(
-    "responses_list, expect_exit, expected_exit_code",
+    "simulated_inputs, should_exit, expected_exit_code",
     [
-        # Valid single pizza, payment confirmed - normal exit
+        # Valid payment on first attempt
         (["thin", "pesto", "pepperoni", "n", "card", "y"], False, None),
 
-        # Invalid payment method, then valid - normal exit
+        # Invalid payment method, then corrected
         (["thin", "pesto", "mushrooms", "n", "bitcoin", "cash", "y"], False, None),
 
-        # Invalid confirmation, then valid payment confirmation - normal exit
+        # Invalid payment confirmation, then valid
         (["thin", "pesto", "mushrooms", "n", "cash", "maybe", "cash", "y"], False, None),
 
-        # Multiple pizzas, declined first payment, then confirmed on second - normal exit
+        # Decline first payment, confirm on second attempt
         ([
             "thin", "marinara", "pepperoni", "y",
             "gluten free", "pesto", "mushrooms", "n",
-            "card", "n",   # First payment declined
-            "card", "y"    # Second payment accepted
+            "card", "n", "card", "y"
         ], False, None),
 
-        # Cancel at payment method prompt - should exit
+        # User cancels at payment method prompt
         (["thin", "pesto", "pepperoni", "n", "q"], True, 0),
     ],
+    ids=[
+        "valid_first_payment",
+        "correct_invalid_payment_method",
+        "correct_invalid_confirmation",
+        "second_attempt_successful_payment",
+        "cancel_during_payment"
+    ]
 )
-def test_order_flow_all_variants(mock_input, responses_list, expect_exit, expected_exit_code):
+def test_payment_flow_scenarios(mock_input, simulated_inputs, should_exit, expected_exit_code):
     """
-    Parameterized integration test for various pizza ordering flows through take_order_from_user.
+    Functional test for the payment interaction logic in `take_order_from_user`.
 
-    Mocks user inputs, simulates order process, and asserts the final payment status and pizza
-    count.
+    Simulates various user behaviors related to the payment process:
+    - Valid and invalid payment methods.
+    - Confirmation retries.
+    - Cancellation during payment selection.
 
-    :param monkeypatch: pytest monkeypatch fixture to override input
-    :param responses_list: list of input strings simulating user choices/prompts
-    :param expected_paid: boolean, expected order payment status after completion
-    :param expected_pizza_count: int, expected number of pizzas in the order
+    :param mock_input: Fixture to simulate built-in `input()` with predefined values.
+    :param simulated_inputs: List of mocked user inputs during order and payment flow.
+    :param should_exit: Whether SystemExit is expected (user cancels).
+    :param expected_exit_code: Expected exit code if SystemExit is raised.
     """
-    mock_input(responses_list)
+    mock_input(simulated_inputs)
 
-    if expect_exit:
-        with pytest.raises(SystemExit) as exc:
+    if should_exit:
+        with pytest.raises(SystemExit) as exc_info:
             take_order_from_user()
-        assert exc.type == SystemExit
-        assert exc.value.code == expected_exit_code
+        assert exc_info.type == SystemExit
+        assert exc_info.value.code == expected_exit_code
     else:
-        # Just run the flow, expecting no SystemExit and normal completion
         take_order_from_user()
