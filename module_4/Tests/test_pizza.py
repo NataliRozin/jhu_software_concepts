@@ -6,6 +6,7 @@ import pytest # type: ignore
 from src.pizza import Pizza # type: ignore
 
 # --- Test Cases ---
+
 pizza_test_cases = [
     ('thin', ['pesto'], 'mozzarella', ['mushrooms'], 11),
     ('thick', ['marinara'], 'mozzarella', ['mushrooms'], 11),
@@ -13,9 +14,23 @@ pizza_test_cases = [
     ('thin', ['liv sauce', 'pesto'], 'mozzarella', ['mushrooms', 'pepperoni'], 18)
 ]
 
+
+# --- Fixtures ---
+
+@pytest.fixture(params=pizza_test_cases)
+def pizza_case(request):
+    """
+    Fixture that yields a Pizza object and its source test parameters.
+    """
+    crust, sauce, cheese, toppings, cost = request.param
+    pizza = Pizza(crust, sauce, cheese, toppings)
+    return pizza, crust, sauce, cheese, toppings, cost
+
+
+# --- test_pizza_initialization ---
+
 @pytest.mark.pizza
-@pytest.mark.parametrize("crust, sauce, cheese, toppings, _", pizza_test_cases)
-def test_pizza_initialization(crust, sauce, cheese, toppings, _):
+def test_pizza_initialization(pizza_case):
     """
     Test that a Pizza object is initialized with the correct attributes.
 
@@ -25,7 +40,7 @@ def test_pizza_initialization(crust, sauce, cheese, toppings, _):
     :param toppings: List of toppings
     :param _: Unused expected cost
     """
-    pizza = Pizza(crust, sauce, cheese, toppings)
+    pizza, crust, sauce, cheese, toppings, _ = pizza_case
 
     # --- CRUST ---
     assert isinstance(pizza.crust, str), "Crust should be a string"
@@ -49,9 +64,11 @@ def test_pizza_initialization(crust, sauce, cheese, toppings, _):
     assert isinstance(pizza.total_cost, int), "Cost should be an integer"
     assert pizza.total_cost > 0, "Cost should be higher than zero"
 
+
+# --- test_get_cost ---
+
 @pytest.mark.pizza
-@pytest.mark.parametrize("crust, sauce, cheese, toppings, expected_cost", pizza_test_cases)
-def test_get_cost(crust, sauce, cheese, toppings, expected_cost):
+def test_get_cost(pizza_case):
     """
     Test that get_cost() returns the correct total cost of the pizza.
 
@@ -61,11 +78,14 @@ def test_get_cost(crust, sauce, cheese, toppings, expected_cost):
     :param toppings: List of toppings
     :param expected_cost: Expected calculated cost
     """
-    pizza = Pizza(crust, sauce, cheese, toppings)
+    pizza, _, _, _, _, expected_cost = pizza_case
 
     assert pizza.get_cost() == expected_cost, (
         f"Expected cost {expected_cost}, but got {pizza.get_cost()}"
     )
+
+
+# --- test_set_cost_valid ---
 
 @pytest.mark.pizza
 @pytest.mark.parametrize("crust, sauce, cheese, toppings, cost", pizza_test_cases)
@@ -86,6 +106,9 @@ def test_set_cost_valid(crust, sauce, cheese, toppings, cost):
         f"set_cost did not update total_cost correctly; expected {cost}, got {pizza.total_cost}"
     )
 
+
+# --- test_set_cost_invalid_value ---
+
 @pytest.mark.pizza
 def test_set_cost_invalid_value():
     """
@@ -104,29 +127,32 @@ def test_set_cost_invalid_value():
     with pytest.raises(ValueError, match="Cost must be a non-negative integer."):
         pizza.set_cost("free")
 
+
+# --- test_pizza_str ---
+
 @pytest.mark.pizza
-@pytest.mark.parametrize("params", pizza_test_cases)
-def test_pizza_str(params):
+def test_pizza_str(pizza_case):
     """
     Test the __str__ method to verify string representation matches expectations.
 
     :param params: Tuple containing crust, sauce, cheese, toppings, and expected cost
     """
-    crust, sauce, cheese, toppings, cost = params
-    pizza = Pizza(crust, sauce, cheese, toppings)
+    pizza, crust, sauce, cheese, toppings, cost = pizza_case
 
     expected_output = (
-                        f"Crust: {crust}, Sauce: {sauce}, Cheese: {cheese}, "
-                        f"Toppings: {toppings}, Cost: {cost}"
-                        )
+        f"Crust: {crust}, Sauce: {sauce}, Cheese: {cheese}, "
+        f"Toppings: {toppings}, Cost: {cost}"
+    )
 
     assert str(pizza) == expected_output, (
         f"String representation mismatch.\nExpected: {expected_output}\nGot: {str(pizza)}"
     )
 
+
+# --- test_pizza_cost ---
+
 @pytest.mark.pizza
-@pytest.mark.parametrize("crust, sauce, cheese, toppings, cost", pizza_test_cases)
-def test_pizza_cost(crust, sauce, cheese, toppings, cost):
+def test_pizza_cost(pizza_case):
     """
     Test that the cost() method correctly computes the pizza's cost.
 
@@ -136,7 +162,7 @@ def test_pizza_cost(crust, sauce, cheese, toppings, cost):
     :param toppings: List of toppings
     :param cost: Expected computed cost
     """
-    pizza = Pizza(crust, sauce, cheese, toppings)
+    pizza, _, _, _, _, cost = pizza_case
     computed_cost = pizza.cost()
 
     assert computed_cost == cost, (
