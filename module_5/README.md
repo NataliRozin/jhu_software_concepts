@@ -62,6 +62,7 @@ python pylint .
 
 
 Optional further steps:
+
 **Step 5:** To run the Flask web app, execute:
 ```bash
 python app.py
