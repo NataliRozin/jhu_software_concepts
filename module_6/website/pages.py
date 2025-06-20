@@ -1,23 +1,52 @@
-# Import necessary Flask functions
-from flask import Blueprint, render_template
+"""
+Pages Blueprint module.
+
+This module defines the `pages` Blueprint, which handles routes for the main
+pages of the website including home, contact, and projects.
+
+Routes:
+- `/`          : Home page
+- `/contact`   : Contact page
+- `/projects`  : Projects page
+"""
+
+from flask import Blueprint, render_template, Response  # Import Response for type hinting
 
 # Create a Blueprint named "pages"
 bp = Blueprint("pages", __name__)
 
-# Define a route for the home page ("/")
 @bp.route("/")
-def home():
+def home() -> Response:
+    """
+    Render the home page.
+
+    Returns
+    -------
+    Response
+        Rendered HTML template for the home page.
+    """
     return render_template("pages/home.html")
 
-# Define a route for the contact page ("/contact")
 @bp.route("/contact")
-# Render the home.html template from the "pages" folder
-def contact():
-    # Render the contact.html template from the "pages" folder
+def contact() -> Response:
+    """
+    Render the contact page.
+
+    Returns
+    -------
+    Response
+        Rendered HTML template for the contact page.
+    """
     return render_template("pages/contact.html")
 
-# Define a route for the projects page ("/projects")
 @bp.route("/projects")
-def projects():
-    # Render the projects.html template from the "pages" folder
+def projects() -> Response:
+    """
+    Render the projects page.
+
+    Returns
+    -------
+    Response
+        Rendered HTML template for the projects page.
+    """
     return render_template("pages/projects.html")
