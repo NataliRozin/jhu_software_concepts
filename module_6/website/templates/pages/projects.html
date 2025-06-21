@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 
 {# --- TITLE --- #}
@@ -18,4 +19,26 @@
   
   {# Create a button that leads to github: Module 1 project #}
   <a href="https://github.com/NataliRozin/jhu_software_concepts/tree/main/module_1" target="_blank" rel="noopener" class="button">View on GitHub</a>
+=======
+{% extends 'base.html' %}
+
+{# --- TITLE --- #}
+{% block title %}Natali Rozin: Python Projects{% endblock title %}
+
+{# --- HEADER --- #}
+{% block header %}
+  <h2>Projects</h2>
+{% endblock header %}
+
+{# --- CONTENT --- #}
+{% block content %}
+  <h3>Module 1: Personal Website</h3>
+  <p>
+      This is a static web application developed using the Flask framework. It features a clean layout with a personal biography, contact information,
+      and a dedicated section for Python projects. The project was built as part of a modern software development course to demonstrate core skills in Flask, HTML, CSS.
+  </p>
+  
+  {# Create a button that leads to github: Module 1 project #}
+  <a href="https://github.com/NataliRozin/jhu_software_concepts/tree/main/module_1" target="_blank" rel="noopener" class="button">View on GitHub</a>
+>>>>>>> 93205069aa956d4da9fa81284c23433bfbedbd56
 {% endblock content %}

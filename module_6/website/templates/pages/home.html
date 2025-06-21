@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 
 {# --- TITLE --- #}
@@ -16,4 +17,24 @@
   </div>
   <img src="{{ url_for('static', filename='img/IMG_9845.JPG') }}" class="profile-pic"/>
 </div>
+=======
+{% extends 'base.html' %}
+
+{# --- TITLE --- #}
+{% block title %}Natali Rozin: Homepage{% endblock title %}
+
+{# --- CONTENT --- #}
+{% block content %}
+<div class="image-text-container">
+  <div class="text-content">
+    <h2>Natali Rozin</h2>
+    <p class="profession">Aerospace Engineer</p>
+    <p>
+      Natali is a graduate student currently pursuing her M.Sc. degree in AI.
+      She holds a Bachelor's degree in Aerospace Engineering and she has professional experience as an aerodynamicist. She is vegan and loves graphic design in her free time.
+    </p>
+  </div>
+  <img src="{{ url_for('static', filename='img/IMG_9845.jpg') }}" class="profile-pic" />
+</div>
+>>>>>>> 93205069aa956d4da9fa81284c23433bfbedbd56
 {% endblock content %}

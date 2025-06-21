@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 
 {# --- TITLE --- #}
@@ -21,4 +22,29 @@
       <span>linkedin.com/in/natali-rozin</span>
     </a>
   </div>
+=======
+{% extends 'base.html' %}
+
+{# --- TITLE --- #}
+{% block title %}Natali Rozin: Contact{% endblock title %}
+
+{# --- HEADER --- #}
+{% block header %}
+  <h2>Get in touch</h2>
+{% endblock header %}
+
+{# --- CONTENT --- #}
+{% block content %}
+  <div class="contact-grid">
+    <img src="{{ url_for('static', filename='icons/email.png') }}" class="icon"/>
+    <a href="mailto:nrozin1@jhu.com">
+      <span>nrozin1@jh.edu</span>
+    </a>
+
+    <img src="{{ url_for('static', filename='icons/linkedin.png') }}" class="icon"/>
+    <a href="https://www.linkedin.com/in/natali-rozin" target="_blank" rel="noopener">
+      <span>linkedin.com/in/natali-rozin</span>
+    </a>
+  </div>
+>>>>>>> 93205069aa956d4da9fa81284c23433bfbedbd56
 {% endblock content %}
